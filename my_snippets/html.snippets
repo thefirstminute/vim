@@ -1,0 +1,207 @@
+extends php,html
+
+snippet a "a href"
+<a href="$1">$2</a>$0
+endsnippet
+snippet a. "a href with class"
+<a href="$1" class="${2:link}">$3</a>$0
+endsnippet
+snippet ab "a href target blank"
+<a href="$1" target="_blank">$2</a>$0
+endsnippet
+snippet ab. "a href target blank with class"
+<a href="$1" class="${2:link}" target="_blank">$3</a>$0
+endsnippet
+snippet unsplash
+https://source.unsplash.com/${1:oqStl2L5oxI}/${2:1200}x${3:700}
+endsnippet
+snippet picsum
+<img src="https://picsum.photos/${1:1200}/${2:800}/?image=210${3:&blur}" alt="${6:AltText}">
+endsnippet
+snippet phimg
+<img src="https://place-hold.it/${1:250x250}/${2:CCC}/${3:333}.gif&text=${4:PlaceholderTextNOSPACES}&fontsize=${5:14}" alt="${6:AltText}">$0
+endsnippet
+snippet img
+<img src="$1" alt="$2">
+endsnippet
+
+snippet vp "meta viewport"
+<meta name="viewport" content="width=device-width, initial-scale=1">
+endsnippet
+
+snippet vpnz "meta viewport no zoom"
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+endsnippet
+
+snippet ljs "link to js file"
+<script src="${1:js/custom.js}"></script>
+endsnippet
+
+snippet . "class="
+class="${1}"$0
+endsnippet
+snippet # "id="
+id="${1}"$0
+endsnippet
+snippet val "value="
+value="${1}"$0
+endsnippet
+
+snippet div "<div> w/ ID and Class"
+<div${1: id="${2:id}"} ${3: class="${4:class}"}>
+		$0
+</div>
+endsnippet
+snippet st "sytle="
+style="$1"$0
+endsnippet
+snippet sp.
+	<span class="$1">$2</span>$0
+endsnippet
+snippet sp#
+	<span id="$1">$2</span>$0
+endsnippet
+snippet cfx "ClearFix Div"
+<div class="clearfix"></div>
+endsnippet
+
+
+snippet form-group "Form: form-group -> label & input"
+<div class="form-group">
+	<label for="${1:this_thing}">${2:Title:}</label>
+	<input type="text" class="form_input" id="$1" name="$1" value="<?php echo $$1; ?>">
+</div>$0
+endsnippet
+
+snippet fli "Form: label & input"
+<label for="${1:this_thing}">${2:Title:}</label>
+<input type="text" class="" id="$1" name="$1" value="<?php echo $$1; ?>">$0
+endsnippet
+
+snippet fso "Form: select option with values"
+<option value="${1:this_thing}" <?php if ($${2:php_var}=='$1') echo 'selected'; ?>>${3:${1/\w+\s*/\u$0/}}</option>
+endsnippet
+
+snippet yvid
+<div class="video-wrap mw-med">
+	<div class="video-container">
+		<iframe src="https://www.youtube.com/embed/${1:NpEaa2P7qZI}?modestbranding=1&rel=0&showinfo=0&controls=0&autoplay=0" frameborder="0" width="560" height="315" allowfullscreen></iframe>
+	</div>
+</div>
+endsnippet
+snippet vvid
+<div class="video-wrap mw-med">
+	<div class="video-container">
+		<iframe src="https://player.vimeo.com/video/${1:VIDEO_ID}" width="640" height="480" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	</div>
+</div>
+endsnippet
+snippet htmlcomm "Large HTML Comment Block"
+<!--
+##############################################
+##############################################
+#     ${1:Comment}
+##############################################
+##############################################
+-->$0
+endsnippet
+
+snippet jquery-3 "include jquery-3 "
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+endsnippet
+
+# ═══════- TESTING TEMPLATE -═══════ {{{
+snippet darktest "description"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>test it dark</title>
+<style> body { background-color:#0C0C0D; color:#F3F3F3; height:100%; font-size:16px; font-weight:400; font-family:"Lucida Console", Monaco, monospace; margin:5%; } </style>
+<script></script>
+</head>
+<body>
+<?php $0 ?>
+</body>
+</html>
+endsnippet
+# ::::::::::> END TESTING TEMPLATE }}} <::::::::::
+
+# ═══════- BOOTSTRAP -═══════ {{{
+snippet col "Bootstrap column"
+<div class="col-xs-${1:size} col-sm-$1 col-md-$1 col-lg-$1">
+	${2:VISUAL}
+</div>
+endsnippet
+snippet bstable "Bootstrap Table"
+<table class="table ${1:table-striped} ${2:table-bordered} ${3:table-hover} ${4:table-condensed} ${5:table-response}">
+	${6}
+</table>
+endsnippet
+snippet bsform "Bootstrap Form"
+<form role="form">
+	<div class="form-group">
+		<label for="${1:id}">${2:Label Title}</label>
+		<input type="${3}" class="form-control" id="$1" placeholder="$2">
+	</div>
+	<button type="submit" class="btn btn-default">${4:Submit}</button>	
+</form>
+endsnippet
+snippet bsinput "Bootstrap Input"
+<input type="text" class="form-control" name="${1}" value="${2}" placeholder="${3:$1}">
+endsnippet
+snippet btn "Bootstrap Button"
+<button type="button" class="btn btn-${1:btn-types}">${1:Default}</button>
+endsnippet
+snippet btn-block "Bootstrap Button Block"
+<button type="button" class="btn btn-block btn-${1:btn-types}">${1:Default}</button>
+endsnippet
+snippet btn-types "Bootstrap Button Types"
+btn-default
+btn-primary
+btn-success
+btn-info
+btn-warning
+btn-danger
+btn-link
+btn-lg
+btn-sm
+btn-xs
+btn-block
+endsnippet
+snippet bsalert "Bootstrap Alert"
+<div class="alert alert-${1:success,info,warning,danger,dismissable}">${2:alert text}</div>
+endsnippet
+snippet bshtml "Starter Bootstrap Template"
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>${1:Awesome Title}</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <h1>Hello, world!</h1>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+</body>
+</html>
+endsnippet
+# ::::::::::> END BOOTSTRAP }}} <::::::::::

@@ -1,0 +1,14 @@
+{
+	"suggest.minTriggerInputLength": 2,
+	"suggest.snippetIndicator": "►",
+
+	"snippets.extends": {
+		"cpp": ["c"],
+		"php": ["html"]
+	},
+
+	"snippets.userSnippetsDirectory": "~/.config/nvim/my_snippets",
+
+	"snippets.triggerCharacters":["qs"]
+
+}
