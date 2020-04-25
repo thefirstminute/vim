@@ -1,6 +1,6 @@
 " Main Vimdamentals:
 	source $HOME/.config/nvim/base.vim
-" Speed Typor N Fix Typos:
+" Speed Typor And Fix Typos:
 	source $HOME/.config/nvim/autotext.vim
 " Bloat Etc:
 	source $HOME/.config/nvim/fluff.vim
