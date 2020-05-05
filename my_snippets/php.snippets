@@ -32,7 +32,12 @@ if ($_SERVER['REMOTE_ADDR']=='107.189.218.58' || $_SERVER['DOCUMENT_ROOT']=='/va
 	$startTime = microtime(true);
 }
 endsnippet
-
+snippet phptimer "Execution Timer For PHP"
+$time_pre = microtime(true);
+exec(...);
+$time_post = microtime(true);
+$exec_time = $time_post - $time_pre;
+endsnippet
 # }}}
 # ==========  POSTS, GETS, REQS, & CLEANERS {{{
 snippet GET "PHP get"
@@ -244,14 +249,18 @@ snippet year "php date Year"
 date("Y");
 endsnippet
 # }}}
-
 # ========== MY FUNCTIONS: {{{
 snippet count_it "my count function"
-count_it($sql_con, "SELECT ${1:id} FROM ${2:table} WHERE ${3:thing}='$${4:$3}'")$0
+count_it($sql_con, "SELECT ${1:id} FROM ${2:table} WHERE ${3:thing}='$${4:$3}'${5: AND ${6:thing}='$${7:$6}'}${8: LIMIT ${9:1}}")$0
 endsnippet
 
+snippet usr_var "my sql_var function for user_vars"
+sql_var($sql_con, "SELECT ${1:var1} FROM ${2:user_vars} WHERE ${3:user}='$${4:username}'${5: AND ${6:thing}='$${7:$6}'}${8: LIMIT ${9:1}}")$0
+endsnippet
+snippet sql_var "my sql_var function"
+sql_var($sql_con, "SELECT ${1:id} FROM ${2:table} WHERE ${3:thing}='$${4:$3}' AND ${5:thing}='$${6:$5}'${7: LIMIT ${8:1}}");$0
+endsnippet
 # }}}
-
 # ========== SQL {{{
 snippet k=v
 ${1:var}='$${2:$1}'$0
