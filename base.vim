@@ -1,5 +1,10 @@
 syntax on
 filetype plugin indent on
+augroup AutoSaveFolds
+  autocmd!
+  autocmd BufWinLeave *.* mkview!
+  autocmd BufWinEnter *.* silent! loadview
+augroup END
 set omnifunc=syntaxcomplete#Complete
 
 " Changed Vimdamentals:
@@ -51,7 +56,7 @@ vmap K <PageUp>4jzz0
 
 " SETS: 
 " {{{
-set hidden								" lets you use buffers in the background easier
+set hidden								" Don't delete buffers, use them in the background
 set number relativenumber " show relative line numbers
 set mouse=na              " yeah, mice are neat, sometimes
 set keymodel=startsel     " Allow select of text in insert mode using shift

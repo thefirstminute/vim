@@ -42,9 +42,16 @@ call plug#begin('~/.config/nvim/pluggos')
 
 let g:ctrlp_use_caching = 0
 
-
+" YCM
+" {{{
 nnoremap <silent> sd :YcmCompleter GoTo<CR>
 nnoremap <silent> sf :YcmCompleter FixIt<CR>
+"}}}
 
+" StanAngeloff PHP:
+" {{{
+let php_var_selector_is_identifier=1
+let php_html_load=1
+" }}}
 
 " }}} ===-0-=== END Plugins Configs

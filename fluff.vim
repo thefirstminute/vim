@@ -13,12 +13,6 @@ nnoremap sa O<CR><CR><CR><CR><CR><CR><CR><Esc>kkk
 nnoremap sh i <Esc>
 nnoremap sl a <Esc>h
 
-" Remove space up/down/around
-nnoremap <Leader>rk kdd
-nnoremap <Leader>rj jdd
-nnoremap <Leader>rh lx
-nnoremap <Leader>rl hx
-
 " Quick Macros:
 nnoremap Q @q
 vnoremap Q :norm @q<CR>
@@ -212,6 +206,10 @@ function! TagSelection()
 	call cursor(curl, curc)
 endfunction
 "WRAPPING TEXT }}}
+
+" needs set hidden to keep buffers in background
+"nnoremap <M-l> :bnext<CR>
+"nnoremap <M-h> :bprev<CR>
 
 "So I can move around in insert
 inoremap <M-k> <C-o>gk

@@ -24,6 +24,13 @@ set wildignore+=*.tar.*
 " These are files we are not likely to want to edit or read.
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+" PHP Generated Code Highlights (HTML & SQL)                                              
+let php_sql_query=1                                                                                        
+let php_htmlInStrings=1
+
+
 set iskeyword+=-
 set iskeyword+=_
 autocmd FileType php,html,css,scss set iskeyword+=@,48-57,192-255
@@ -134,13 +141,19 @@ autocmd Filetype php,html inoremap ;pec <?php echo  ?><left><left><left>
 autocmd Filetype php,html inoremap ;pin <?php include_once '' ?><left><left><left><left>
 autocmd Filetype php,html inoremap ;pre <?php require_once '' ?><left><left><left><left>
 autocmd Filetype php,html inoremap ;pif <?php if (): ?><left><left><left><left><left>
-autocmd Filetype php,html inoremap ;pelif <?php elseif (): ?><left><left><left><left><left>
 autocmd Filetype php,html inoremap ;pelse <?php else: ?>
 autocmd Filetype php,html inoremap ;pend <?php endif; ?>
 autocmd Filetype php,html inoremap ;self <?php echo $_SERVER['PHP_SELF'] ?>
+autocmd Filetype php,html inoremap ;get $_GET['']<++><left><left><left><left><left><left>
+autocmd Filetype php,html inoremap ;post $_POST['']<++><left><left><left><left><left><left>
+autocmd Filetype php,html inoremap ;req $_REQUEST['']<++><left><left><left><left><left><left>
+autocmd Filetype php,html inoremap ;sess $_SESSION['']<++><left><left><left><left><left><left>
+autocmd Filetype php,html inoremap ;isset isset()<left>
+autocmd Filetype php,html inoremap ;ifset if(isset()){<++>}<left><left><left><left><left><left><left><left>
+autocmd Filetype php,html inoremap ;pelif <?php elseif (): ?><left><left><left><left><left>
 autocmd Filetype php,html inoremap ;u=u username='$username'
 autocmd Filetype php,html inoremap ;k2v foreach ($row as $key => $val) { $$key=$val; }
-autocmd Filetype php,html inoremap ;req require('');<left><left><left>
+autocmd Filetype php,html inoremap ;rq require('');<left><left><left>
 autocmd Filetype php,html inoremap ;ro require_once('');<left><left><left>
 
 " HTML:

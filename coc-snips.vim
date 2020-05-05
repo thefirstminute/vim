@@ -43,6 +43,9 @@ call plug#begin('~/.config/nvim/pluggos')
 	"Plug '2072/PHP-Indenting-for-VIm'    " PHP indent script
 	"Plug 'squizlabs/php_codesniffer', { 'on':  'PhpCsFixerFixFile' }
 
+	" Auto Texts:
+	Plug 'mattn/emmet-vim', { 'for': ['php', 'html', 'css'] }
+	Plug 'SirVer/ultisnips' "| Plug 'honza/vim-snippets'  https://github.com/bonsaiben/bootstrap-snippets
 
 	" Visual Stuff:
 	"	Plug 'arcticicestudio/nord-vim' " nice darkish blueish colorscheme
@@ -53,10 +56,11 @@ call plug#begin('~/.config/nvim/pluggos')
 
 
   " Other Tools:
+  "Plug 'tpope/vim-commentary'  " use 'gc' to comment stuff out
   "Plug 'aserebryakov/vim-todo-lists'
-	Plug 'ap/vim-buftabline' " nice - slim - way to show buffers in tabline
-
-
+	"Plug 'ap/vim-buftabline' " nice - slim - way to show buffers in tabline
+	Plug 'vim-airline/vim-airline'  " | Plug 'vim-airline/vim-airline-themes' | Plug 'ryanoasis/vim-devicons'
+	Plug 'joshdick/onedark.vim'     " prefer this for airline
 
 call plug#end()
 " }}} ===-0-=== END Loading The Plugins 
@@ -84,7 +88,6 @@ let php_html_load=1
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_enabled = 1
 " }}}
-
 
 " COC:
 " {{{
@@ -120,6 +123,88 @@ let g:coc_snippet_prev = 'kj'
 
 " END SNIPPETS }}}
 
+" }}}
+
+" UltiSnips:
+"{{{
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/my_snippets']
+let g:UltiSnipsExpandTrigger="qx"
+let g:UltiSnipsListSnippets="qs"
+let g:UltiSnipsJumpForwardTrigger="jk"
+let g:UltiSnipsJumpBackwardTrigger="kj"
+let g:UltiSnipsEditSplit="vertical"
+let g:ultisnips_php_scalar_types = 1
+" UltiSnipsEdit
+nmap <Leader>ulti :UltiSnipsEdit<CR>
+"}}}
+
+
+" Emmet:
+" {{{
+let g:user_emmet_expandabbr_key="qe"
+imap jk <plug>(emmet-move-next)
+imap kj <plug>(emmet-move-prev)
+let g:user_emmet_settings = {
+			\    'html': {
+			\        'empty_element_suffix': ' />',
+			\    },
+			\}
+" }}}
+
+" Airline:
+" {{{ 
+"BEFORE MESSING:
+" let g:NERDTreeStatusline = ''
+" let g:airline_theme = 'onedark'
+" let g:airline#extenions#tabline#enabled=1  " buffers at the top as tabs
+" let g:airline#extensions#tabline#buffer_nr_show = 1
+" let g:airline_skip_empty_sections = 1
+" let g:airline#extensions#coc#enabled = 1
+" let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+" let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+" let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+" let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+" let g:airline_highlighting_cache = 1
+
+" set noshowmode " hide default mode text (e.g. INSERT) as airline already displays it
+
+set noshowmode " hide default mode text (e.g. INSERT) as airline already displays it
+nmap <A-h> <Plug>AirlineSelectPrevTab
+nmap <A-l> <Plug>AirlineSelectNextTab
+
+let g:airline_theme = 'onedark'
+let g:NERDTreeStatusline = ''
+
+let g:airline_section_b = '%-{getcwd()}'
+
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_left_sep = '' " '»'
+let g:airline_right_sep = '' " '«'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = '+' "㏑'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = 'Ɇ'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" TABLINE:
+let g:airline#extensions#tabline#enabled = 1                " show tabline
+let g:airline#extensions#tabline#buffer_nr_show = 1         " show buffer number
+let g:airline#extensions#tabline#buffer_nr_format = '[%s]'  " buffer number format
+"let g:airline#extensions#tabline#fnamemod = ':t'            " only file name in tabs
+"let g:airline#extensions#tabline#fnamecollapse = 1
+let g:airline_highlighting_cache = 1
+
+"COC:
+let g:airline#extensions#coc#enabled = 1
+let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 " }}}
 
 " }}} ===-0-=== END Plugins Configs
