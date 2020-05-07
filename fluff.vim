@@ -36,6 +36,7 @@ nnoremap C "_C
 vnoremap C "_C
 nnoremap c "_c
 vnoremap c "_c
+vnoremap p "_dP
 
 " delete to x register
 nnoremap <Leader>x "xx
