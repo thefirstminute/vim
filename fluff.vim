@@ -2,16 +2,18 @@
 set foldmethod=marker
 
 " s can be another leader, and besides; C & cl will do the same thing...
-vnoremap s <Nop>
-nnoremap s <Nop>
-vnoremap S <Nop>
-nnoremap S <Nop>
+" USING VIM-SNEAK NOW
+"vnoremap s <Nop>
+"nnoremap s <Nop>
+"vnoremap S <Nop>
+"nnoremap S <Nop>
+
 " Insert space(s) up/down/around
-nnoremap sk m`O<Esc>``
-nnoremap sj m`o<Esc>``
-nnoremap sa O<CR><CR><CR><CR><CR><CR><CR><Esc>kkk
-nnoremap sh i <Esc>
-nnoremap sl a <Esc>h
+nnoremap <leader>sk m`O<Esc>``
+nnoremap <leader>sj m`o<Esc>``
+nnoremap <leader>sa O<CR><CR><CR><CR><CR><CR><CR><Esc>kkk
+nnoremap <leader>sh i <Esc>
+nnoremap <leader>sl a <Esc>h
 
 " Quick Macros:
 nnoremap Q @q
