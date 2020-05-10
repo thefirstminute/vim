@@ -53,7 +53,7 @@ call plug#begin('~/.config/nvim/pluggos')
 	Plug 'machakann/vim-highlightedyank' "shows you what you just yanked - I love this
 	"Plug 'Yggdroot/indentLine'  "show indent guides
 	Plug 'andymass/vim-matchup', { 'for': ['php', 'html'] }  " shows matching tags in html
-
+	
 
   " Other Tools:
   "Plug 'tpope/vim-commentary'  " use 'gc' to comment stuff out
@@ -62,6 +62,8 @@ call plug#begin('~/.config/nvim/pluggos')
 	Plug 'vim-airline/vim-airline'  " | Plug 'vim-airline/vim-airline-themes' | Plug 'ryanoasis/vim-devicons'
 	Plug 'joshdick/onedark.vim'     " prefer this for airline
 
+	Plug 'justinmk/vim-sneak'				" quickly go to places in doc
+
 call plug#end()
 " }}} ===-0-=== END Loading The Plugins 
 
@@ -69,6 +71,18 @@ call plug#end()
 " {{{
 
 nnoremap <silent><leader>ff :call PhpCsFixerFixFile()<CR>
+
+" VimSneak:
+" {{{
+let g:sneak#label = 1
+map s <Plug>Sneak_s
+map S <Plug>Sneak_S
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
+" }}}
+
 
 " BuffTabLine:
 " {{{
