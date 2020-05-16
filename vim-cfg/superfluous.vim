@@ -8,7 +8,6 @@ set title							" show file name in titlebar
 au FileType gitcommit 1 | startinsert
 " }}}
 
-
 " Changing Vimdamentals:______________________________________________________
 "{{{ 
 " Quick Macros:
@@ -41,9 +40,14 @@ au FileType gitcommit 1 | startinsert
 
 " }}} ===--0--=== End Changing Vimdamentals
 
-
 " Productivity:_______________________________________________________________
 "{{{ 
+
+" yank source of url (still need to complete the rest of url)
+  nnoremap <Leader>yurl :r !curl -s http
+
+" Start an external command with a single bang
+  nnoremap ! :!
 
 " }}} ===--0--=== End Productivity
 
@@ -66,7 +70,6 @@ au FileType gitcommit 1 | startinsert
 	nnoremap <Leader>fy :set foldmethod=syntax<CR>
 	nnoremap <Leader>f{ :set foldmethod=marker<CR>:set foldmarker={,}<CR>
 " }}} ===--0--=== End Folding
-
 
 " Edit Text:_________________________________________________________________
 "{{{ 
@@ -116,24 +119,59 @@ au FileType gitcommit 1 | startinsert
 	nnoremap <Leader>ve v$
 	vnoremap <Leader>ve $
 
+" Change Tag (need to start on first letter of opeining tag)
+  nnoremap <Leader>ct mA:norm %<CR>ci</CHANGEZTAG<Esc>`AcwCHANGEZTAG<Esc>:%s/CHANGEZTAG//g<left><left>
 
-" }}} ===--0--=== End Productivity
 
-
+" }}} ===--0--=== End Edit Text
 
 " Functions:__________________________________________________________________
 "{{{ 
 
+" open help buffers to right:
+augroup helpfiles
+	au!
+	au BufRead,BufEnter */doc/* wincmd L
+augroup END
 
+" Toggle background transparency - this doesn't quite work right
+let t:is_transparent = 0
+function! Background_toggle()
+	if t:is_transparent == 0
+		hi Normal guibg=NONE ctermbg=NONE
+		let t:is_transparent = 1                   
+	else
+		set termguicolors
+		colorscheme minimalist
+	endif
+endfunction
+nnoremap <Leader>bg :call Background_toggle()<CR>
 
 " }}} ===--0--=== End Functions
 
-" Find N Open N Navigate Stuff:_______________________________________________
+" Terminal Mode::_____________________________________________________________
+" {{{
+tnoremap ii <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
+"cnoreabbrev t terminal
+nnoremap <Leader>T :10sp<CR>:terminal<CR>
+nnoremap <Leader>VT :vs<CR>:terminal<CR>
+tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+" }}}
+
+" Find N Open N Close N Navigate Stuff:_______________________________________________
 "{{{ 
 
 " jump around buffers
 	nnoremap <silent> <M-l> :bn<CR>
 	nnoremap <silent> <M-h> :bp<CR>
+
+	"Switch Buffer
+	nnoremap <leader>bs :buffer <C-z><S-Tab>
+	" opens in split
+	nnoremap <leader>bS :vbuffer <C-z><S-Tab>
+	"Buffer Delete:
+	nnoremap <leader>bdd :bd!<CR>
 
 " Opens an edit command with the path of the currently edited file filled in
 	nnoremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -141,6 +179,12 @@ au FileType gitcommit 1 | startinsert
 	nnoremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 " Open File under cursor in split
 	nnoremap <Leader>gf <C-w>f
+" Only This Buffer
+  nnoremap <Leader>oo :only<CR>
+
+
+" Set working directory to current file path
+  nnoremap <leader>wd :lcd %:p:h<CR>
 
 "Search for Text in current directory
 	nnoremap <silent><Leader>sd yiw:vimgrepadd <C-r>" % <bar> copen<CR>
@@ -155,6 +199,9 @@ au FileType gitcommit 1 | startinsert
 
 " Misc:_______________________________________________________________________
 "{{{ 
+
+" repeat last command line command
+	nnoremap <up> :<up>
 
 " Show Colunm 80
 	nnoremap <Leader>col :set colorcolumn=81
