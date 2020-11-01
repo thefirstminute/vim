@@ -4,8 +4,6 @@
 	source $HOME/.config/nvim/autotext.vim
 " Bloat Etc:
 	source $HOME/.config/nvim/fluff.vim
-" How Do We Want It To Look:
-	source $HOME/.config/nvim/minimalooks.vim
 
 " The Plugins And Philosphy Of The Vim:
 	" (Pick One)
@@ -16,6 +14,10 @@
 	" coc, but using ultisnips and airline - 
     " remove statusline stuff from minimalooks
 	source $HOME/.config/nvim/coc-snips.vim
+
+" How Do We Want It To Look:
+	"colorscheme desert
+	source $HOME/.config/nvim/minimalooks.vim
 
 " DISABLE AUTO LINE COMMENTS:!!! 
 	" (but still automatically remove comments on join)

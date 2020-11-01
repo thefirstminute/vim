@@ -49,6 +49,7 @@ call plug#begin('~/.config/nvim/pluggos')
 
 	" Visual Stuff:
 	"	Plug 'arcticicestudio/nord-vim' " nice darkish blueish colorscheme
+	Plug 'dikiaap/minimalist'
 
 	Plug 'machakann/vim-highlightedyank' "shows you what you just yanked - I love this
 	"Plug 'Yggdroot/indentLine'  "show indent guides
