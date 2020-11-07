@@ -8,10 +8,6 @@
     {
       "pattern": "https?://www.youtube.com/*",
       "passKeys": "f"
-    },
-    {
-      "pattern": "https?://www.youtube.com/*",
-      "passKeys": ""
     }
   ],
   "filterLinkHints": false,
