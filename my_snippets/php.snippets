@@ -1,14 +1,20 @@
 extends php,html
 
 # ==========  GENERAL PHP {{{
-snippet php "Open PHP"
+snippet ppp "Full PHP <?php ... ?>" A
+<?php $0 ?>
+endsnippet
+snippet ppo "Open PHP" A
 <?php
 endsnippet
-snippet echoif "PHP Echo If (expression)"
-$0<?php echo $${1:var} ? $${2:$1} : '${3:nope}' ?>
+snippet ppc "Close PHP"
+?>
 endsnippet
-snippet echo "PHP Echo"
-$0<?php echo $1 ?>
+snippet echoif "PHP Echo If (expression)"
+$0echo $${1:var} ? $${2:$1} : '${3:nope}'
+endsnippet
+snippet pecho "PHP Echo"
+<?php echo $1 ?>$0
 endsnippet
 snippet rett
 return true;
@@ -21,8 +27,9 @@ snippet phpcomm "comment block"
  * $1
  */
 endsnippet
-snippet phpre "PHP Redirect Location"
+snippet redirect_php "PHP Redirect Location"
 header("Location: ${1:http://example.com/myOtherPage.php}");
+die();$0
 endsnippet
 snippet phperr "Add php dev errors for my ip"
 if ($_SERVER['REMOTE_ADDR']=='107.189.218.58' || $_SERVER['DOCUMENT_ROOT']=='/var/www') {
@@ -37,6 +44,9 @@ $time_pre = microtime(true);
 exec(...);
 $time_post = microtime(true);
 $exec_time = $time_post - $time_pre;
+endsnippet
+snippet diedark "DieDark" A
+die('<style> body { background-color: #333; color:#EEE; }</style>');
 endsnippet
 # }}}
 # ==========  POSTS, GETS, REQS, & CLEANERS {{{
@@ -73,22 +83,23 @@ endsnippet
 snippet visset "isset $variable"
 $$1=isset($${2:$1}) ? $$2 : '';$0
 endsnippet
-
-## REALESCAPES:
-
-snippet escape "mysqli_real_escape_string"
-$$1=isset($_${2:POST}['${3:$1}']) ? mysqli_real_escape_string($sql_con, $_$2['$3']) : '';$0
+snippet notissetorblank "!isset OR blank..."
+(!isset($1) || $1=='')$0
 endsnippet
+snippet issetandnotblank "isset and not blank..."
+(isset($1) && $1!='')$0
+endsnippet
+## REALESCAPES:
 
 # }}}
 # ==========  VARIABLES & SUCH {{{
-snippet ev "echo var: $var <br>"
+snippet "ecv" "echo var: $var <br>" rbA
 echo "${1:var}: $$1 <br />";$0
 endsnippet
 snippet $ "PHP variable"
 $${1:var} ${2:= ${3:value}};
 endsnippet
-snippet =?:
+snippet =?: "$var = true ? false : default"
 $${1:foo} = ${2:true} ? ${3:a} : ${0};
 endsnippet
 snippet ?:
@@ -97,8 +108,14 @@ endsnippet
 snippet bad_usernames "Bad Usernames Array"
 $bad_usernames = array("admin","administrator","default","house","sponsor","username","user","users","master","expired","yourusername",'autoresponder','desiredusername', 'coop','member','members','rotator','random','account');
 endsnippet
+snippet "^ecb" "echo '<br />';" rbA
+echo '<br />';$0
+endsnippet
 # }}}
 # ==========  INCLUDES{{{
+snippet "inco" "php include_once"
+include_once ("${1:${2:cfg}${3:.php}}");
+endsnippet
 snippet inc
 include '${1:file}';$0
 endsnippet
@@ -108,6 +125,9 @@ endsnippet
 snippet rec
 require '${1:file}';$0
 endsnippet
+snippet "reco" "php require_once"
+require_once ("${1:${2:cfg}${3:.php}}");
+endsnippet
 snippet reco
 require_once '${1:file}';$0
 endsnippet
@@ -116,7 +136,7 @@ endsnippet
 snippet vd
 var_dump(${0});
 endsnippet
-snippet vdd
+snippet "vdd" "Var Dump & Die!"
 var_dump(${1}); die('${0:}');
 endsnippet
 snippet sr "str_replace"
@@ -131,8 +151,11 @@ endsnippet
 snippet ia "in_array"
 in_array(${1:needle}, ${2:haystack})$0
 endsnippet
+snippet kk "'key'=>$key,"
+'${1:name}' => $${2:$1},$0
+endsnippet
 snippet kv "'key' => 'value',"
-"${1:key}" => "${2:value}",$0
+"${1:key}" => "$${2:$1}",$0
 endsnippet
 snippet for "for ($i = 0; $i < $count; $i++) { ... }"
 for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
@@ -144,15 +167,15 @@ foreach ($${1:var} as $${2:val}) {
 	${0:${VISUAL}}
 }
 endsnippet
-snippet k2v "names keys as values"
+snippet "k2v" "names keys as values"
 foreach ($row as $key => $val) { $$key=$val; }
 endsnippet
-snippet fekv "foreach ($var as $key => $val) { .. }"
+snippet "fekv" "foreach ($var as $key => $val) { .. }"
 foreach ($${1:var} as $${2:key} => $${3:val}) {
 	${0:${VISUAL}}
 }
 endsnippet
-snippet fetbl "foreach table for troubleshooting"
+snippet "fetbl" "foreach table for troubleshooting"
 $tbl='<table border="0" cellspacing="2" cellpadding="8">';
 foreach ($${1:_POST} as $k => $v) {
 	$k = urldecode(stripslashes($k));
@@ -165,9 +188,9 @@ foreach ($${1:_POST} as $k => $v) {
 }
 $tbl.='</table>';
 echo $tbl;
-die; 
+die;
 endsnippet
-snippet ifset "if variable isset"
+snippet "ifisset" "if variable isset"
 if (isset ($${1:var}) && $$1!='') {
 	${0:${VISUAL}}
 }
@@ -177,6 +200,13 @@ if (${1:/* condition */}) {
 	${2:// code...}
 }
 $0
+endsnippet
+snippet "pifel" "<?php if..else..end"
+<?php if (${1:$${2:loco} == ${3:true}}): ?>
+	${4:${VISUAL}}
+<?php else: ?>
+	$5
+<?php endif; ?>$0
 endsnippet
 snippet ife "if else"
 if (${1:/* condition */}) {
@@ -196,12 +226,11 @@ snippet elif "elseif(condition) { ... }"
 	${0:${VISUAL}}
 }
 endsnippet
-snippet ifel "<?php if (condition): ?> ... <?php else: ?> ... <?php endif; ?>"
-<?php if (${1}): ?>
-	${0:${VISUAL}}
-<?php else: ?>
-	${2}
-<?php endif; ?>
+snippet pelse "<?php else: ?>"
+<?php endif; ?>$0
+endsnippet
+snippet pend "<?php endif; ?>"
+<?php endif; ?>$0
 endsnippet
 snippet do "do"
 do {
@@ -240,7 +269,7 @@ snippet today "php date Today"
 $today = date("Y-m-d");
 endsnippet
 snippet 7day "PHP date, Next Week"
-$nextWeek = date("Y-m-d", strtotime("+7 day"));
+$nextWeek = date("Y-m-d H:i:s", strtotime("+7 day"));
 endsnippet
 snippet humandate "human readable date Jan 4th 20xx"
 date("M jS Y", strtotime("+7 day"))
@@ -249,19 +278,21 @@ snippet year "php date Year"
 date("Y");
 endsnippet
 # }}}
-# ========== MY FUNCTIONS: {{{
-snippet count_it "my count function"
-count_it($sql_con, "SELECT ${1:id} FROM ${2:table} WHERE ${3:thing}='$${4:$3}'${5: AND ${6:thing}='$${7:$6}'}${8: LIMIT ${9:1}}")$0
+# ==========  MY FUNCTIONS: {{{
+snippet cnt "my count function"
+count_it($sql_con, "SELECT ${1:id} FROM ${2:table} WHERE ${3:thing}='$${4:${3}}' ${5: AND ${6:thing}='$${7:${6}}'} ${8:LIMIT ${9:1}}")$0
 endsnippet
-
-snippet usr_var "my sql_var function for user_vars"
-sql_var($sql_con, "SELECT ${1:var1} FROM ${2:user_vars} WHERE ${3:user}='$${4:username}'${5: AND ${6:thing}='$${7:$6}'}${8: LIMIT ${9:1}}")$0
+snippet uvar "my sql_var function for user_vars"
+sql_var($sql_con, "SELECT ${1:var1} FROM ${2:user_vars} WHERE ${3:user}='$${4:username}'${5: AND ${6:thing}='$${7:${6}}'}${8: LIMIT ${9:1}}")$0
 endsnippet
-snippet sql_var "my sql_var function"
-sql_var($sql_con, "SELECT ${1:id} FROM ${2:table} WHERE ${3:thing}='$${4:$3}' AND ${5:thing}='$${6:$5}'${7: LIMIT ${8:1}}");$0
+snippet svar "my sql_var function"
+sql_var($sql_con, "SELECT ${1:id} FROM ${2:table} WHERE ${3:thing}='$${4:${3}}' AND ${5:thing}='$${6:${5}}'${7: LIMIT ${8:1}}");$0
 endsnippet
 # }}}
-# ========== SQL {{{
+# ==========  SQL {{{
+snippet escape "mysqli_real_escape_string"
+$$1=isset($_${2:POST}['${3:$1}']) ? mysqli_real_escape_string($sql_con, $_$2['$3']) : '';$0
+endsnippet
 snippet k=v
 ${1:var}='$${2:$1}'$0
 endsnippet
@@ -271,8 +302,13 @@ endsnippet
 snippet vvv "simple SQL formated k=v for updates etc.." A
 ${1:var}='$$1',$0
 endsnippet
+snippet ifnr "mysqli_num_rows($result)"
+if (mysqli_num_rows(${1:$sql})>0) {
+	$0
+}
+endsnippet
 snippet sqlnr "mysqli_num_rows($result)"
-mysqli_num_rows($sql)
+mysqli_num_rows(${1:$sql})$0
 endsnippet
 snippet sqlarr "Get array from SQL"
 $sql=mysqli_query($sql_con, "SELECT * FROM ${1:table} WHERE ${2:key}='$${3:$2}'");
@@ -281,10 +317,10 @@ $${4:val}=$arr['${5:$4}'];$0
 mysqli_free_result($sql);
 endsnippet
 snippet sqlwhile "SQL array while loop"
-$sql = mysqli_query($sql_con, "SELECT * FROM ${1:table} WHERE ${2:key}='$${3:$2}'"); 
+$sql = mysqli_query($sql_con, "SELECT * FROM ${1:table} WHERE ${2:key}='$${3:$2}'");
 while ($row = mysqli_fetch_array($sql)) {
 	$${4:val}=$row['${5:$4}'];$0
-} 
+}
 mysqli_free_result($sql);
 endsnippet
 snippet varr "$var=$arr['name'];"
@@ -299,13 +335,39 @@ endsnippet
 snippet 1r "$var=$row['name'];"
 $${1:val}=$row['${2:$1}'];$0
 endsnippet
+snippet joinleft "SQL Join Left Query" b
+$qry="
+SELECT s.var2 AS location, s.var3 AS shipping, d.var2 AS discount
+FROM user_vars s
+LEFT JOIN user_vars d 
+ON s.usr=d.usr AND d.thing='store-discount'
+WHERE s.usr='$customer' AND s.thing='stockist-info'";
+ORDER BY s.id ASC
+endsnippet
+snippet joinsql "SQL Join Query" b
+$qry="
+SELECT s.var2 AS location, s.var3 AS shipping, d.var2 AS discount
+FROM user_vars s
+JOIN user_vars d ON s.usr=d.usr AND d.thing='store-discount'
+WHERE s.usr='$customer' AND s.thing='stockist-info'";
+endsnippet
+snippet joinupdate "SQL Join Update" b
+$upd="
+UPDATE shopping_cart s
+INNER JOIN
+products p
+ON s.pid=p.pid AND p.department='coupon_code' AND s.cart_id='$cart_id'
+SET s.qty=0
+";
+mysqli_query($sql_con, $upd);
+endsnippet
 snippet dbcon "Database Connection"
 $sql_con = myqli_connect("localhost","${1:user}","${2:pass}","${3:table}") or die ("Failed To Connect!");
 endsnippet
 snippet insertm "SQL Insert With Message"
 $sql_update=mysqli_query($sql_con, "INSERT INTO ${1:table} (${2:var1}, ${3:var2}) VALUES ('$${4:$2}', '$${5:$3}')");$0
-if ($sql_update) $msg = '<div class="green_bg msg">Account Updated</div><br /><br />';
-else $msg = '<div class="red_bg msg">Failed To Update...<br />Server Error, Please Try Again Later</div><br /><br />';
+if ($sql_update) $msg = '<div class="success msg">Account Updated</div>';
+else $msg = '<div class="error msg">Failed To Update...<br />Server Error, Please Try Again Later</div>';
 $0
 endsnippet
 snippet insert "SQL Insert"
@@ -316,12 +378,12 @@ mysqli_query($sql_con, "UPDATE ${1:table} SET ${2:key}='$${3:$2}' WHERE ${4:key}
 endsnippet
 snippet updatem "SQL Update With Message"
 $sql_update=mysqli_query($sql_con, "UPDATE ${1:table} SET ${2:key}='$${3:$2}' WHERE ${4:key}='$${5:$4}'");
-if ($sql_update) $msg = '<div class="green_bg msg">Account Updated</div><br /><br />';
-else $msg = '<div class="red_bg msg">Failed To Update...<br />Server Error, Please Try Again Later</div><br /><br />';
+if ($sql_update) $msg = '<div class="success msg">Account Updated</div>';
+else $msg = '<div class="error msg">Failed To Update...<br />Server Error, Please Try Again Later</div>';
 $0
 endsnippet
 # }}}
-# ========== MAIL {{{
+# ==========  MAIL {{{
 snippet mail "PHP Mail"
 mail(${1:to}, ${2:subject}, ${3:\$message}, $header);
 endsnippet
@@ -333,5 +395,43 @@ $header.= 'X-Mailer: PHP/' . phpversion() . "\r\n" .
 "Content-Transfer-Encoding: 8bit\r\n\r\n";
 
 mail(${3:\$to}, ${4:\$subject}, ${5:\$message}, $header);
+endsnippet
+# }}}
+# ==========  MY CUSTOM PHP {{{
+snippet msgw "koadstrap warning message" b
+$msg.='<div class="msg warning">${1:Uh Oh...}</div>';
+endsnippet
+snippet msgs "koadstrap success message" b
+$msg.='<div class="msg success">${1:Update Successful}</div>';
+endsnippet
+snippet msge "koadstrap error message" b
+$msg.='<div class="msg error">${1:Something Went Wrong...}</div>';
+endsnippet
+snippet troublshooter "echo stuff to table..." b
+/* Post Troubleshooter:   ₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪
+ * {{{ */
+if (count(${1:$_POST})>0) {
+  $tbl='<table border="0" cellspacing="2" cellpadding="8">';
+  foreach ($1 as $k => $v) {
+    if (is_array($v)) {
+      // for one dimensinal array: $v=implode(' => ', $v);
+      $vx='';
+      foreach ($v as $v1 => $v2) $vx.=$v1.' => '. $v2 .' | ';
+      $v=$vx;
+    }
+    $tbl.='
+    <tr>
+      <td>'. $k .'</td>
+      <td>'. $v .'</td>
+    </tr>';
+  }
+  $tbl.='</table>';
+  echo $tbl;
+  die('<style> body { background-color: #333; color:#EEE; }</style>');
+}
+/* }}} */
+endsnippet
+snippet posted "My Posted Function" b
+$${1:var}=posted('$1');
 endsnippet
 # }}}
