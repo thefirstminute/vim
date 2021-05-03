@@ -1,14 +1,75 @@
 {
-	"suggest.minTriggerInputLength": 2,
-	"suggest.snippetIndicator": "►",
+  "coc.preferences.jumpCommand": "vsplit",
 
-	"snippets.extends": {
-		"cpp": ["c"],
-		"php": ["html"]
-	},
+  "suggest.minTriggerInputLength": 2,
+  "suggest.completionItemKindLabels": {
+    "text": "t",
+    "method": "m",
+    "function": "f",
+    "snippet": "s"
+  },
+  "suggest.snippetIndicator": "$",
+  "suggest.localityBonus": true,
+  "suggest.noselect": true,
+  "suggest.triggerCompletionWait": 100,
+  "suggest.detailField": "preview",
+  "suggest.fixInsertedWord": true,
+  "suggest.triggerAfterInsertEnter": true,
+  "suggest.numberSelect": false,
+  "suggest.removeDuplicateItems": true,
+  "suggest.enablePreselect": true,
+  "suggest.floatEnable": true,
 
-	"snippets.userSnippetsDirectory": "~/.config/nvim/my_snippets",
+  "emmet.showExpandedAbbreviation": "always",
+  "emmet.includeLanguages": {
+    "php":[ "html", "css", "javascript", "sql" ],
+    "html":[ "css", "javascript" ]
+  },
+  "emmet.optimizeStylesheetParsing": true,
+  "emmet.syntaxProfiles": {
+    "php": "html"
+  },
 
-	"snippets.triggerCharacters":["qs"]
 
+  "suggest.lowPrioritySourceLimit": 5,
+  "suggest.highPrioritySourceLimit": 10,
+
+  "suggest.languageSourcePriority": 99,
+  "snippets.priority": 95,
+  "emmet.priority": 95,
+  "yank.priority": 1,
+  "coc.source.around.priority": 55,
+  "coc.source.buffer.priority": 50,
+  "coc.source.file.priority": 10,
+
+  "javascript.suggest.paths": true,
+  "html.suggest.html5": true,
+
+  "explorer.width": 28,
+  "explorer.icon.enableNerdfont": false,
+  "explorer.previewAction.onHover": false,
+  "explorer.git.enable": true,
+  "explorer.git.command": "git",
+  "explorer.git.icon.status.added": "A",
+  "explorer.git.icon.status.mixed": "*",
+  "explorer.git.icon.status.deleted": "D",
+  "explorer.git.icon.status.untracked": "?",
+  "explorer.git.icon.status.unmodified": " ",
+  "explorer.git.icon.status.unmerged": "U",
+  "explorer.git.icon.status.copied": "C",
+  "explorer.file.git.showUntrackedFiles":true,
+  "explorer.git.icon.rootStatus.conflicted": "=",
+  "explorer.file.showHiddenFiles": true,
+  "explorer.keyMappings.global": {
+    "<cr>": ["expandable?", "expand", "open"],
+    "o": ["expandable?", "expand", "open"],
+    "v": "open:vsplit"
+  },
+
+  "snippets.ultisnips.directories": ["UltiSnips", "~/.config/nvim/my_snippets"],
+  "snippets.autoTrigger": true,
+
+  "prettier.bracketSpacing": true,
+
+  "list.indicator": ">"
 }

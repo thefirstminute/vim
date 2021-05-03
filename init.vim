@@ -1,25 +1,12 @@
-" Main Vimdamentals:
-	source $HOME/.config/nvim/base.vim
-" Speed Typor N Fix Typos:
-	source $HOME/.config/nvim/autotext.vim
-" Bloat Etc:
-	source $HOME/.config/nvim/fluff.vim
+source $HOME/.config/nvim/ineed.vim
+source $HOME/.config/nvim/plugs.vim
+source $HOME/.config/nvim/bonus.vim
+source $HOME/.config/nvim/autotext.vim
+source $HOME/.config/nvim/looks.vim
+source $HOME/.config/nvim/cfg-plg/coc2.vim
+source $HOME/.config/nvim/cfg-plg/emmet.vim
+source $HOME/.config/nvim/cfg-plg/todo.vim
+source $HOME/.config/nvim/_whichkey.vim
+source $HOME/.config/nvim/probation.vim
+source $HOME/.config/nvim/sets.vim
 
-" The Plugins And Philosphy Of The Vim:
-	" (Pick One)
-	" include ctrl p ycm functionality:
-	" source $HOME/.config/nvim/ctrlP-YCM.vim
-	" include coc functionality: 
-	"source $HOME/.config/nvim/coc.vim
-	" coc, but using ultisnips and airline - 
-    " remove statusline stuff from minimalooks
-	source $HOME/.config/nvim/coc-snips.vim
-
-" How Do We Want It To Look:
-	"colorscheme desert
-	source $HOME/.config/nvim/minimalooks.vim
-
-" DISABLE AUTO LINE COMMENTS:!!! 
-	" (but still automatically remove comments on join)
-	" This needs to stay at the end to work...for some reason??
-	au FileType * set fo-=c fo-=r fo-=o fo+=j
