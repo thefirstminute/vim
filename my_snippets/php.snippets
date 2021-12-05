@@ -1,4 +1,4 @@
-extends php,html
+extends html
 
 # ==========  GENERAL PHP {{{
 snippet ppp "Full PHP <?php ... ?>" A
@@ -33,10 +33,10 @@ die();$0
 endsnippet
 snippet phperr "Add php dev errors for my ip"
 if ($_SERVER['REMOTE_ADDR']=='107.189.218.58' || $_SERVER['DOCUMENT_ROOT']=='/var/www') {
-	error_reporting(E_ALL);
-	ini_set('display_errors', 1);
-	ini_set('display_startup_errors', 1);
-	$startTime = microtime(true);
+  error_reporting(E_ALL);
+  ini_set('display_errors', 1);
+  ini_set('display_startup_errors', 1);
+  $startTime = microtime(true);
 }
 endsnippet
 snippet phptimer "Execution Timer For PHP"
@@ -159,12 +159,12 @@ snippet kv "'key' => 'value',"
 endsnippet
 snippet for "for ($i = 0; $i < $count; $i++) { ... }"
 for ($${2:i} = 0; $$2 < ${1:count}; $$2${3:++}) {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 snippet fe "foreach ($var as $val) { .. }"
 foreach ($${1:var} as $${2:val}) {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 snippet "k2v" "names keys as values"
@@ -172,18 +172,18 @@ foreach ($row as $key => $val) { $$key=$val; }
 endsnippet
 snippet "fekv" "foreach ($var as $key => $val) { .. }"
 foreach ($${1:var} as $${2:key} => $${3:val}) {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 snippet "fetbl" "foreach table for troubleshooting"
 $tbl='<table border="0" cellspacing="2" cellpadding="8">';
 foreach ($${1:_POST} as $k => $v) {
-	$k = urldecode(stripslashes($k));
-	$v = urldecode(stripslashes($v));
-	$tbl.='
+  $k = urldecode(stripslashes($k));
+  $v = urldecode(stripslashes($v));
+  $tbl.='
 <tr>
-	<td>'. urldecode(stripslashes($k)) .'</td>
-	<td>'. urldecode(stripslashes($v)) .'</td>
+  <td>'. urldecode(stripslashes($k)) .'</td>
+  <td>'. urldecode(stripslashes($v)) .'</td>
 </tr>';
 }
 $tbl.='</table>';
@@ -192,38 +192,38 @@ die;
 endsnippet
 snippet "ifisset" "if variable isset"
 if (isset ($${1:var}) && $$1!='') {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 snippet if "basic if condition"
 if (${1:/* condition */}) {
-	${2:// code...}
+  ${2:// code...}
 }
 $0
 endsnippet
 snippet "pifel" "<?php if..else..end"
 <?php if (${1:$${2:loco} == ${3:true}}): ?>
-	${4:${VISUAL}}
+  ${4:${VISUAL}}
 <?php else: ?>
-	$5
+  $5
 <?php endif; ?>$0
 endsnippet
 snippet ife "if else"
 if (${1:/* condition */}) {
-	${2:// code...}
+  ${2:// code...}
 } else {
-	${3:// code...}
+  ${3:// code...}
 }
 $0
 endsnippet
 snippet el "else { ... }"
 } else {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 snippet elif "elseif(condition) { ... }"
 } elseif (${1}) {
-	${0:${VISUAL}}
+  ${0:${VISUAL}}
 }
 endsnippet
 snippet pelse "<?php else: ?>"
@@ -234,12 +234,12 @@ snippet pend "<?php endif; ?>"
 endsnippet
 snippet do "do"
 do {
-	${0:VISUAL}
+  ${0:VISUAL}
 } while (${1:/* condition */});"
 endsnippet
 snippet evenodd "even or odd logic"
 if ($${1:number} % 2 === 0) {
-	$0
+  $0
 }
 endsnippet
 snippet striparr "preg_replace strip out bad words"
@@ -250,12 +250,12 @@ endsnippet
 snippet xif "explode string contains delimiter"
 $${1:array_name}=array();
 if (stripos(${2:string}, '${3:delimiter}')!==false) {
-	$x=explode('$3', $2);
-	foreach ($x as $v) {
-		if (!in_array($v, $$1)) $$1[]=$v;
-	}
+  $x=explode('$3', $2);
+  foreach ($x as $v) {
+    if (!in_array($v, $$1)) $$1[]=$v;
+  }
 } else {
-		if (!in_array($2, $$1) && $2!='') $$1[]=$2;
+    if (!in_array($2, $$1) && $2!='') $$1[]=$2;
 }
 $0
 endsnippet
@@ -267,6 +267,9 @@ $now = date("Y-m-d H:i:s");
 endsnippet
 snippet today "php date Today"
 $today = date("Y-m-d");
+endsnippet
+snippet pdate "PHP date..."
+$${1:date} = date("Y-m-d H:i:s", strtotime("${2:+}${3:5} ${4:day}"));$0
 endsnippet
 snippet 7day "PHP date, Next Week"
 $nextWeek = date("Y-m-d H:i:s", strtotime("+7 day"));
@@ -304,7 +307,7 @@ ${1:var}='$$1',$0
 endsnippet
 snippet ifnr "mysqli_num_rows($result)"
 if (mysqli_num_rows(${1:$sql})>0) {
-	$0
+  $0
 }
 endsnippet
 snippet sqlnr "mysqli_num_rows($result)"
@@ -319,7 +322,7 @@ endsnippet
 snippet sqlwhile "SQL array while loop"
 $sql = mysqli_query($sql_con, "SELECT * FROM ${1:table} WHERE ${2:key}='$${3:$2}'");
 while ($row = mysqli_fetch_array($sql)) {
-	$${4:val}=$row['${5:$4}'];$0
+  $${4:val}=$row['${5:$4}'];$0
 }
 mysqli_free_result($sql);
 endsnippet
@@ -339,7 +342,7 @@ snippet joinleft "SQL Join Left Query" b
 $qry="
 SELECT s.var2 AS location, s.var3 AS shipping, d.var2 AS discount
 FROM user_vars s
-LEFT JOIN user_vars d 
+LEFT JOIN user_vars d
 ON s.usr=d.usr AND d.thing='store-discount'
 WHERE s.usr='$customer' AND s.thing='stockist-info'";
 ORDER BY s.id ASC
