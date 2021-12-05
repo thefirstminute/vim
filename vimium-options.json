@@ -1,20 +1,40 @@
 {
-  "settingsVersion": "1.66",
+  "settingsVersion": "1.67",
   "exclusionRules": [
     {
       "pattern": "https?://mail.google.com/*",
       "passKeys": ""
     },
     {
-      "pattern": "https?://www.youtube.com/*",
+      "pattern": "https?://www.youtube.com/watch*",
       "passKeys": "f"
+    },
+    {
+      "pattern": "https?://www.youtube.com/watch*",
+      "passKeys": "t"
+    },
+    {
+      "pattern": "https?://vnc.tryhackme.tech/*",
+      "passKeys": ""
+    },
+    {
+      "pattern": "https?://remote-eu-06.tryhackme.tech/*",
+      "passKeys": ""
+    },
+    {
+      "pattern": "https?://remote-eu-07.tryhackme.tech/*",
+      "passKeys": ""
+    },
+    {
+      "pattern": "https?://www.youtube.com/watch*",
+      "passKeys": "m"
     }
   ],
   "filterLinkHints": false,
   "waitForEnterForFilteredHints": true,
   "hideHud": false,
-  "keyMappings": "# Insert your preferred key mappings here.\nunmap h\nunmap H\nunmap j\nunmap k\nunmap J\nunmap K\nunmap l\nunmap L\nunmap F\nunmap f\n\nF nextFrame\nmap h goBack\n\" lowercase L here:\nmap l goForward\nmap H previousTab\nmap L nextTab\nmap <a-h> previousTab\nmap <a-l> nextTab\nmap J scrollDown\nmap K scrollUp\nmap j scrollPageDown\nmap k scrollPageUp\nmap s LinkHints.activateMode\nmap S LinkHints.activateModeToOpenInNewTab\nmap f LinkHints.activateModeToOpenInNewForegroundTab\n\" capital i here:\nmap I LinkHints.activateModeToOpenIncognito\nmap zh scrollLeft\nmap zl scrollRight\nmap ' Marks.activateGotoMode\n\nmap 9 firstTab\nmap 0 lastTab",
-  "linkHintCharacters": "sadfjklewcmpgh",
+  "keyMappings": "# Insert your preferred key mappings here.\nunmap h\nunmap H\nunmap j\nunmap k\nunmap J\nunmap K\nunmap l\nunmap L\nunmap F\nunmap f\n\nF nextFrame\nmap h goBack\n\" lowercase L here:\nmap l goForward\nmap H previousTab\nmap L nextTab\nmap <a-h> previousTab\nmap <a-l> nextTab\nmap J scrollDown\nmap K scrollUp\nmap j scrollPageDown\nmap k scrollPageUp\nmap s LinkHints.activateMode\nmap S LinkHints.activateModeToOpenInNewTab\nmap f LinkHints.activateModeToOpenInNewForegroundTab\n\" capital i here:\nmap I LinkHints.activateModeToOpenIncognito\nmap zh scrollLeft\nmap zl scrollRight\nmap ' Marks.activateGotoMode\n\nmap yl LinkHints.activateModeToCopyLinkUrl\nmap ys LinkHints.activateModeToCopyLinkUrl\n\nmap 9 firstTab\nmap 0 lastTab",
+  "linkHintCharacters": "wersdfcuiojklm",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",
   "nextPatterns": "next,more,newer,>,›,→,»,≫,>>",
@@ -24,7 +44,7 @@
   "scrollStepSize": 60,
   "smoothScroll": true,
   "grabBackFocus": true,
-  "searchEngines": "w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\n\n# More examples.\n#\n# (Vimium supports search completion Wikipedia, as\n# above, and for these.)\n#\ngo: https://www.google.com/search?q=%s Google\n# l: https://www.google.com/search?q=%s&btnI I'm feeling lucky...\nyt: https://www.youtube.com/results?search_query=%s Youtube\ngm: https://www.google.com/maps?q=%s Google maps\n# b: https://www.bing.com/search?q=%s Bing\ndd: https://duckduckgo.com/?q=%s DuckDuckGo\n# az: https://www.amazon.com/s/?field-keywords=%s Amazon\n# qw: https://www.qwant.com/?q=%s Qwant\nso: https://stackoverflow.com/search?q=%s\ngh: https://github.com/search?q=%s",
+  "searchEngines": "w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\n\n# More examples.\n#\n# (Vimium supports search completion Wikipedia, as\n# above, and for these.)\n#\ngo: https://www.google.com/search?q=%s Google\ngl: https://www.google.com/search?q=%s&btnI I'm feeling lucky...\nyt: https://www.youtube.com/results?search_query=%s Youtube\ngm: https://www.google.com/maps?q=%s Google maps\n# b: https://www.bing.com/search?q=%s Bing\ndd: https://duckduckgo.com/?q=%s DuckDuckGo\n# az: https://www.amazon.com/s/?field-keywords=%s Amazon\n# qw: https://www.qwant.com/?q=%s Qwant\nso: https://stackoverflow.com/search?q=%s\ngh: https://github.com/search?q=%s",
   "searchUrl": "https://www.google.com/search?q=",
-  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\nbackground: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFF785),\n  color-stop(100%,#FFC542));\nborder: 1px solid #E3BE23;\n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\ncolor: black;\nfont-weight: bold;\nfont-size: 12px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}"
+  "userDefinedLinkHintCss": "div > #vomnibar {\n  background: rgb(24, 26, 27, .4);\n  border: none;\n  padding:0\n}\n\ndiv > #vomnibar .vomnibarSearchArea {\n  background: rgb(24, 26, 27, .4);\n  border: none;\n  padding:0\n}\n\ndiv > #vomnibar #vomnibarInput{\n  background: rgba(30, 32, 33, .8);\n  color: #DDD;\n  border: none;\n  padding:0\n}"
 }
