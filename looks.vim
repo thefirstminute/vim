@@ -4,13 +4,31 @@
 "autocmd BufReadPre,FileType sh,bash set background=dark
 "autocmd BufReadPre,FileType python colorscheme onedark
 "autocmd BufReadPre,FileType python set background=dark
-"autocmd WinNew *.* colorscheme minimalist
-"autocmd WinNew *.* set background=dark
-autocmd FileType vim,snippets colorscheme angr
-autocmd FileType vim,snippets set background=dark
+" colorscheme alduin
+" colorscheme ayu
+" colorscheme minimalist
+set background=dark
 
-autocmd FileType php,html,css colorscheme minimalist
-autocmd FileType php,html,css set background=dark
+" TokyoNight: https://github.com/folke/tokyonight.nvim
+let g:tokyonight_style = "night"
+let g:tokyonight_italic_functions = 1
+let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
+" Custom Colors:
+let g:tokyonight_colors = {
+  \ 'hint': 'orange',
+  \ 'error': '#ff0000'
+\ }
+
+" Load the colorscheme
+colorscheme tokyonight
+
+
+
+" autocmd FileType vim,snippets colorscheme angr
+" autocmd FileType vim,snippets set background=dark
+
+" autocmd FileType php,html,css colorscheme minimalist
+" autocmd FileType php,html,css set background=dark
 
 
 "highlight Pmenu       ctermfg=white     ctermbg=240    cterm=NONE
@@ -26,24 +44,31 @@ autocmd FileType php,html,css set background=dark
 "STATUSLINE:
 "{{{
 set statusline=
-set statusline+=[%n]            "buffer number
-set statusline+=%#error#        "switch to error highlight
-set statusline+=%#todo#          "switch to todo highlight
-set statusline+=%h%m%r%w        "flags: help,modified,readonly,write
-set statusline+=%*              "switch back to normal statusline highlight
-set statusline+=%<%.99f          "99 char tail of the filename
-set statusline+=%F              "full filename
-""set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-""set statusline+=%{&fileformat}] "file format
-set statusline+=:%{FileSize()}  "show filesize with function
-set statusline+=%=              "left/right separator
-set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  "describe what cursor is on
-"set statusline+=%c-            "cursor column
-"set statusline+=%l/%L          "cursor line/total lines
-set statusline+=\               "space
-"set statusline+=%<              "space
-set statusline+=%P              "percent through doc
-""set statusline+=\ %{strftime('%a\ %b\ %d\ %I:%M%p')}\  "show time and date
+set statusline+=[\B%n]         " buffer number
+set statusline+=%#error#       " switch to error highlight
+set statusline+=%h%m%r%w       " flags: help,modified,readonly,write
+set statusline+=%*             " switch back to normal statusline highlight
+set statusline+=%#todo#        " switch to todo highlight
+set statusline+=%<%.99f        " 99 char tail of the filename
+set statusline+=%*             " switch back to normal statusline highlight
+set statusline+=               " separate file name and size
+set statusline+=:%{FileSize()} " show filesize with function
+set statusline+=\              " space
+set statusline+=(%F)           " full filename
+
+set statusline+=%=             " left/right separator
+
+set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\ "  describe what cursor is on
+set statusline+=\              " space
+set statusline+=line:%l/%L     " cursor line/total lines
+set statusline+=(%P)           " percent through doc
+
+" set statusline+=row:\ %l\ col:\ %c
+" set statusline+=\ %{strftime('%a\ %b\ %d\ %I:%M%p')}\  "show time and date
+" set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+" set statusline+=%{&fileformat}] "file format
+"set statusline+=\ %F\ %M\ %Y\ %R
+" ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
 
 
 function! FileSize()

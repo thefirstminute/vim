@@ -159,6 +159,7 @@ iab ehco        echo
 iab eixt        exit
 iab fasle       false
 iab fro         for
+iab ot          to
 iab htis        this
 iab liek        like
 iab liekwise    likewise
@@ -179,28 +180,6 @@ iab fcn         function
 iab icl         include
 " }}}
 
-" OmAuComs: (Calling omni the easy way)
-" {{{
-" put yanked
-inoremap qv <C-r>"
-" put 2nd last yanked
-inoremap qb <C-r>0
-" prev complete
-inoremap qp <C-p>
-" next complete
-inoremap qn <C-n>
-" tag complete
-inoremap q] <C-x><C-]>
-" omni complete
-inoremap qo <C-x><C-o>
-" file complete
-inoremap qf <C-x><C-f>
-" line complete
-inoremap q- <C-x><C-l>
-" included files complete
-inoremap qi <C-x><C-i>
-" }}}
-
 " General:
 " {{{
 augroup genAu
@@ -211,10 +190,11 @@ inoremap ('; ('');<left><left><left>
 inoremap ("; ("");<left><left><left>
 inoremap ('' ('')<left><left>
 inoremap ("" ("")<left><left>
-inoremap (; ();<left><left>
-inoremap {; {};<left><left>
+inoremap ((; ();<left><left>
+inoremap {{; {};<left><left>
 inoremap {;<CR> {<CR>};<ESC>O
-inoremap {{<CR> {<CR>}<ESC>O
+inoremap {{<CR> <ESC>DA {<CR><C-r>"<CR>}<ESC>kva{=<ESC>
+" NEW TEST ^^^ update others if this works - oldway:  inoremap {{<CR> {<CR>}<ESC>O
 inoremap ({ ({<CR>});<ESC>O
 inoremap [[ []<left>
 inoremap ["" [""]<left><left>
@@ -234,6 +214,10 @@ inoremap '.. '.  .'<left><left><left>
 inoremap ".. ".  ."<left><left><left>
 
 " Vim Folds:
+inoremap ;{ <Esc>m`O{{{<Esc>jo}}}<Esc>``a
+nnoremap <Leader>f{ ddO{{{<CR>}}}<Esc>P
+vnoremap <Leader>f{ dO{{{<CR>}}}<Esc>P
+
 inoremap ;1 <Esc>m`O<!-- {{{ --><Esc>jo<!-- }}} --><Esc>``a
 nnoremap <Leader>f1 ddO<!-- {{{ --><CR><!-- }}} --><Esc>P
 vnoremap <Leader>f1 dO<!-- {{{ --><CR><!-- }}} --><Esc>P
@@ -245,6 +229,14 @@ vnoremap <Leader>f' dO" {{{ "<CR>" }}} "<Esc>P
 inoremap ;8 <Esc>m`O/* {{{ */<Esc>jo/* }}} */<Esc>``a
 nnoremap <Leader>f8 ddO/* {{{ */<CR>/* }}} */<Esc>P
 vnoremap <Leader>f8 dO/* {{{ */<CR><CR>/* }}} */<Esc>kP
+
+inoremap ;3 <Esc>m`O## {{{<Esc>jo## }}}<Esc>``a
+nnoremap <Leader>f3 ddO## {{{<CR>## }}}<Esc>P
+vnoremap <Leader>f3 dO## {{{<CR><CR>## }}}<Esc>kP
+
+inoremap ;- <Esc>m`O-- {{{<Esc>jo-- }}}<Esc>``a
+nnoremap <Leader>f- ddO-- {{{<CR>-- }}}<Esc>P
+vnoremap <Leader>f- dO-- {{{<CR><CR>-- }}}<Esc>kP
 
 " Comments:
 inoremap ##* /* <C-o>A */
@@ -287,6 +279,7 @@ augroup webAu
   autocmd Filetype php,html inoremap Qval value=""<left>
   autocmd Filetype php,html inoremap Qna name=""<left>
   autocmd Filetype php,html inoremap Qcl class=""<left>
+  autocmd Filetype php,html inoremap Qcon <a href="contact.php">contact us</a>
   autocmd Filetype php,html inoremap Qdc <div class=""></div><left><left><left><left><left><left><left><left>
   autocmd Filetype php,html inoremap Qds <div style=""></div><left><left><left><left><left><left><left><left>
   autocmd Filetype php,html inoremap Qdiv <div></div><left><left><left><left><left><left>
@@ -328,6 +321,7 @@ augroup webAu
   autocmd Filetype php,html inoremap Qget $_GET['']<++><left><left><left><left><left><left>
   autocmd Filetype php,html inoremap Qpost $_POST['']<++><left><left><left><left><left><left>
   autocmd Filetype php,html inoremap Qreq $_REQUEST['']<++><left><left><left><left><left><left>
+  autocmd Filetype php,html inoremap Qred header('Location: ');<left><left><left><left>
   autocmd Filetype php,html inoremap Qsess $_SESSION['']<++><left><left><left><left><left><left>
   autocmd Filetype php,html inoremap Qisset isset()<left>
   autocmd Filetype php,html inoremap Qifset if(isset()){<++>}<left><left><left><left><left><left><left><left>
@@ -351,6 +345,8 @@ augroup webAu
   " SQL:
   autocmd Filetype sql,php inoremap Qjoin $qry="<CR>SELECT s.var2 AS location, s.var3 AS shipping, d.var2 AS discount<CR>FROM user_vars s<CR>LEFT JOIN user_vars d<CR>ON s.usr=d.usr AND d.thing='store-discount'<CR>WHERE s.usr='$customer' AND s.thing='stockist-info'<CR>ORDER BY s.id ASC";
 
+
+  autocmd Filetype php inoremap Qtt testy($testy, $msg='');<left><left><left>
 
 "  autocmd FileType php,html,css iab cssmiddle .MIDDLE {<CR>display: flex;<CR>flex-wrap: wrap;<CR>align-content: center;<CR>justify-content: center;<CR>height: 100%;<CR>}
 "  autocmd FileType php,html,css iab mp0 margin:0; padding:0;

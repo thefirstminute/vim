@@ -1,25 +1,21 @@
 set timeout
 set timeoutlen=1500
 
-" which key was either not loading off the start, or throwing errors
-if ! exists('g:loaded_vim_which_key')
-    source $HOME/.local/share/nvim/site/pack/git-plugins/start/vim-which-key/autoload/which_key.vim
-endif
-if exists('*which_key#register')
-    call which_key#register('_', "g:which_key_map")
-endif
-
+call which_key#register('_', "g:which_key_map")
 
 highlight Pmenu guibg=#333333 guifg=#EEEEEE
 
-nnoremap <silent> <leader><leader> :<c-u>WhichKey '_'<CR>
-vnoremap <silent> <leader><leader> :<c-u>WhichKeyVisual '_'<CR>
+nnoremap <silent> \ :<c-u>WhichKey '_'<CR>
+vnoremap <silent> \ :<c-u>WhichKeyVisual '_'<CR>
+
+nnoremap <silent> ] :<c-u>WhichKey ']'<CR>
+nnoremap <silent> [ :<c-u>WhichKey '['<CR>
 
 
 let g:which_key_map =  {}
-let g:which_key_map['Q'] = [ ':qa!',           'Quit' ]
-let g:which_key_map['W'] = [ ':wall',          'Write All' ]
-let g:which_key_map['U'] = [ 'UndotreeToggle', 'Undotree' ]
+let g:which_key_map['q'] = [ ':qa!', 'Quit' ]
+let g:which_key_map['w'] = [ ':wa',  'Write All' ]
+let g:which_key_map['W'] = [ ':xa',  'Write All & Quit' ]
 
 
 " Nullificate:
@@ -46,26 +42,27 @@ let g:which_key_map.b = { 'name' : '+buffer',
 " Comments:
 "{{{
 " how to make it know if we're in insert,normal,visual???
-let g:which_key_map.c = { 'name' : '+comment',
-      \ '1' : ['nwy', 'not working yet'],
-      \ '2' : ['nwy', 'not working yet'],
-      \ '3' : ['nwy', 'not working yet'],
-      \ '4' : ['nwy', 'not working yet'],
-      \ '5' : ['nwy', 'not working yet'],
-      \ '6' : ['nwy', 'not working yet'],
-      \ }
+" let g:which_key_map.c = { 'name' : '+comment',
+"       \ '1' : ['nwy', 'not working yet'],
+"       \ '2' : ['nwy', 'not working yet'],
+"       \ '3' : ['nwy', 'not working yet'],
+"       \ '4' : ['nwy', 'not working yet'],
+"       \ '5' : ['nwy', 'not working yet'],
+"       \ '6' : ['nwy', 'not working yet'],
+"       \ }
 "}}}
 
 " Editing:
 "{{{
+      " \ 'c' : [':Commentary',                     'Commentary'],
 let g:which_key_map.e = { 'name' : '+edit',
       \ 'a' : [':LiveEasyAlign',                  'easy Align'],
-      \ 'c' : [':Commentary',                     'Commentary'],
       \ 'd' : { 'name': '+delete',
           \ 'b' : [':g/^$/d',                     'Blank lines'],
           \ 'e' : [':%s/\r//g',                   'EOL characters'],
           \ 's' : [':%s/span[^\>]*//<cr>:%s/<>//<cr>:%s/<\/>//<cr>:%s/<\/span>//g<cr>/span<cr>', 'Span'],
           \ 't' : [':%s/\s\+$//e',                'Trailing whitespace'],
+          \ 'h' : [':%s/<\_.\{-1,\}>//g',         'HTML Tags'],
           \},
       \ 'f' : { 'name': '+format',
         \ 'f' : [':Format',                       'Format (prettier)'],
@@ -94,15 +91,15 @@ let g:which_key_map.f = { 'name' : '+files',
       \ 'n' : [':enew',                    'create new'],
       \ 'q' : [':q!',                      'Quit'],
       \ 'S' : [':w !sudo tee %',           'Sudo Save'],
-            \ 't' : { 'name': '+type',
-                \ 'c' : [':set ft=css',    'css'],
-                \ 'h' : [':set ft=html',   'html'],
-                \ 'H' : [':set ft=haskel', 'haskel'],
-                \ 'p' : [':set ft=php',    'php'],
-                \ 's' : [':set ft=shell',  'shell'],
-                \ 'v' : [':set ft=vim',    'vim'],
-                \ 'y' : [':set ft=python', 'python'],
-            \ },
+          \ 't' : { 'name': '+type',
+              \ 'c' : [':set ft=css',    'css'],
+              \ 'h' : [':set ft=html',   'html'],
+              \ 'H' : [':set ft=haskel', 'haskel'],
+              \ 'p' : [':set ft=php',    'php'],
+              \ 's' : [':set ft=shell',  'shell'],
+              \ 'v' : [':set ft=vim',    'vim'],
+              \ 'y' : [':set ft=python', 'python'],
+          \ },
       \ 'w' : [':w',                       'write file'],
       \ }
 "}}}
@@ -126,10 +123,10 @@ let g:which_key_map.f = { 'name' : '+files',
 
 " Search:
 "{{{
+      " \  't':   [':Rg',        'text Rg'],
 let g:which_key_map.s = { 'name': '+search',
       \  '/':   [':History/',  'history'],
       \  ';':   [':Commands',  'commands'],
-      \  'a':   [':Ag',        'text Ag'],
       \  'b':   [':BLines',    'current buffer'],
       \  'B':   [':Buffers',   'open buffers'],
       \  'c':   [':Commits',   'commits'],
@@ -145,11 +142,11 @@ let g:which_key_map.s = { 'name': '+search',
       \  'p':   [':Helptags',  'help tags'],
       \  'P':   [':Tags',      'project tags'],
       \  's':   [':Snippets',  'snippets'],
-      \  'S':   [':Colors',    'color schemes'],
-      \  't':   [':Rg',        'text Rg'],
-      \  'T':   [':BTags',     'buffer tags'],
-      \  'w':   [':Windows',   'search windows'],
-      \  'y':   [':Filetypes', 'file types'],
+      \  'S':   [':Colors',    'color Schemes'],
+      \  'a':   [':Ag',        'Text'],
+      \  'T':   [':BTags',     'buffer Tags'],
+      \  'w':   [':Windows',   'search Windows'],
+      \  'y':   [':Filetypes', 'file tYpes'],
       \  'z':   [':FZF',       'FZF'],
       \  }
 "}}}
@@ -168,8 +165,8 @@ let g:which_key_map.s = { 'name': '+search',
 "{{{
 let g:which_key_map.v = { 'name' : '+vim',
       \ 'd' : [':set background=dark',                        'set background dark'],
-      \ 'k' : [':$tabnew ~/.config/nvim/_whichKey.vim', 'open vim-which-key config'],
       \ 'l' : [':set background=light',                       'set background light'],
+      \ 'k' : [':$tabnew ~/.config/nvim/_whichKey.vim', 'open vim-which-key config'],
       \ 'p' : [':PlugInstall',                                'Plug Install'],
       \ 'S' : [':source $MYVIMRC',                            'source vimrc'],
       \ 's' : [':mksession! .sess.vim',                       'save Session'],

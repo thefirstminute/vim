@@ -18,7 +18,6 @@ if !&sidescrolloff
 endif
 set display+=lastline
 
-
 " this may solve the theme and comment overrides!?
 " says it's been replaced by: shada
 "if !empty(&viminfo)
@@ -43,14 +42,17 @@ nnoremap <Leader>f3 :set foldlevel=2<CR>
 nnoremap <Leader>ft :set ft=
 
 
-let php_folding = 1     " enable folding for classes and functions
-let php_htmlInStrings=1 " highlight HTML in php
-let php_sql_query=1     " highlight SQL syntax in strings
+" let php_folding = 1     " enable folding for classes and functions
+" let php_htmlInStrings=1 " highlight HTML in php
+let php_sql_query = 1     " highlight SQL syntax in strings
 let g:ftplugin_sql_omni_key = '<C-s>'
 let g:sql_type_default = 'mysql'
-let g:PHP_outdentphpescape = 0
+" let g:PHP_outdentphpescape = 0
 " StanAngeloff PHP:
 " {{{
-let php_var_selector_is_identifier=1
-let php_html_load=1
+let php_var_selector_is_identifier = 1
+let g:php_html_load = 1
 " }}}
+
+
+nnoremap <Leader>ut :UndotreeToggle<CR>

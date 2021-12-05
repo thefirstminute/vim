@@ -26,9 +26,13 @@ vnoremap <C-v> "+P
 " yank from 'x' lines up/down and paste line here
 nnoremap <expr> <Leader>yk "mm". input("How many lines up? ") ."kyy'mp"
 nnoremap <expr> <Leader>yj "mm". input("How many lines down? ") ."jyy'mp"
-" grab from 'x' lines up/down and put line here
-nnoremap <expr> <Leader>dk "mm". input("How many lines up? ") ."kdd'mp"
-nnoremap <expr> <Leader>dj "mm". input("How many lines down? ") ."jdd'mp"
+" move from 'x' lines up/down and put line here
+nnoremap <expr> <Leader>pk "mm". input("How many lines up? ") ."kdd'mp"
+nnoremap <expr> <Leader>pj "mm". input("How many lines down? ") ."jdd'mp"
+
+" delete from 'x' lines up/down
+nnoremap <expr> <Leader>dk "mm". input("How many lines up? ") ."kdd`m"
+nnoremap <expr> <Leader>dj "mm". input("How many lines down? ") ."jdd`m"
 
 " select previously put text
 nnoremap <Leader>sp '[V']
@@ -60,14 +64,20 @@ inoremap ;J <Esc>:call CapsOff()<CR>:<Backspace>jl
 inoremap ;K <Esc>:call CapsOff()<CR>:<Backspace>kl
 
 "delete word
-inoremap ;dw <esc>lbciw
+inoremap ;dw <Esc>bciw
 "delete line
-inoremap ;dl <esc>^C
+inoremap ;dl <Esc>^C
 "delete to end of line
-inoremap ;de <esc>lC
+inoremap ;de <Esc>lC
 "delete to start of line
-inoremap ;ds <esc>lc^
+inoremap ;ds <Esc>lc^
 
+"go to next empty tag
+inoremap ;nt <Esc>/><<CR>a
+"go to next empty quotes
+inoremap ;n" <Esc>/""<CR>a
+inoremap ;nq <Esc>/""<CR>a
+inoremap ;n' <Esc>/''<CR>a
 "}}}
 
 
@@ -78,8 +88,8 @@ nnoremap <Leader>qq :qa!<CR>
 vnoremap <Leader>qq :qa!<CR>
 nnoremap <Leader>ee :exit<CR>
 
-" open vertical split
-nnoremap <leader>vs :vs
+" open buffers in vertical split
+nnoremap <leader>vs :vert sb#<CR>
 " next and previous buffer
 nnoremap <a-j> :bn<CR>
 nnoremap <a-k> :bp<CR>
@@ -179,6 +189,9 @@ vnoremap <Leader>cs y:%s/<C-r>"/
 
 " CHANGE TAG (need to start on first letter of opeining tag)
 nnoremap <Leader>ct mA:norm %<CR>ci</CHANGEZTAG<Esc>`AcwCHANGEZTAG<Esc>:%s/CHANGEZTAG//g<left><left>
+
+" Delete This Tag: opeining and closing tags leave inside alone
+nnoremap <Leader>dtt mq:norm %<CR>dd'qdd
 
 " Remove spaces at the end of lines
 nnoremap <Leader>r<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>:echo "Removed EOL Spaces"<CR>
@@ -440,11 +453,14 @@ onoremap al[ <esc>?[<cr>:nohl<cr>ca[
 onoremap al< <esc>?><cr>:nohl<cr>ca<
 onoremap alt <esc>?</<cr>:nohl<cr>cat
 
+" Delete function
+onoremap af <esc>V$%d
+onoremap if <esc>jVk$%kd
 "}}}
 
 
 "echo ' Oh Gross!  A Mouse            ~~{,_,"> '
-echo ",.-~*´¨¯¨`*·~-.  What's The Single Most Important Thing You Can Do Right Now!?  .-~*´¨¯¨`*·~-.¸"
+"echo ",.-~*´¨¯¨`*·~-.  What's The Single Most Important Thing You Can Do Right Now!?  .-~*´¨¯¨`*·~-.¸"
 "echo '( ๏ Y ๏ )'
 "echo '╭∩╮ (òÓ,) ╭∩╮'
 

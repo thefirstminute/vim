@@ -3,10 +3,10 @@
 
   "suggest.minTriggerInputLength": 2,
   "suggest.completionItemKindLabels": {
+    "snippet": "s",
     "text": "t",
     "method": "m",
-    "function": "f",
-    "snippet": "s"
+    "function": "f"
   },
   "suggest.snippetIndicator": "$",
   "suggest.localityBonus": true,
@@ -20,6 +20,7 @@
   "suggest.enablePreselect": true,
   "suggest.floatEnable": true,
 
+
   "emmet.showExpandedAbbreviation": "always",
   "emmet.includeLanguages": {
     "php":[ "html", "css", "javascript", "sql" ],
@@ -30,14 +31,20 @@
     "php": "html"
   },
 
+  "snippets.userSnippetsDirectory": "~/Documents/vims/my_snippets",
+  "snippets.ultisnips.enable":true,
+  "snippets.extends": {
+    "php":[ "html", "css", "javascript", "sql" ],
+    "html":[ "css", "javascript" ]
+  },
 
+  "suggest.languageSourcePriority": 99,
   "suggest.lowPrioritySourceLimit": 5,
   "suggest.highPrioritySourceLimit": 10,
 
-  "suggest.languageSourcePriority": 99,
-  "snippets.priority": 95,
-  "emmet.priority": 95,
-  "yank.priority": 1,
+  "snippets.priority": 98,
+  "emmet.priority": 90,
+  "yank.priority": 20,
   "coc.source.around.priority": 55,
   "coc.source.buffer.priority": 50,
   "coc.source.file.priority": 10,
@@ -45,9 +52,13 @@
   "javascript.suggest.paths": true,
   "html.suggest.html5": true,
 
+  "python.jediEnabled": false,
+
   "explorer.width": 28,
+  "explorer.file.showHiddenFiles": true,
   "explorer.icon.enableNerdfont": false,
   "explorer.previewAction.onHover": false,
+
   "explorer.git.enable": true,
   "explorer.git.command": "git",
   "explorer.git.icon.status.added": "A",
@@ -59,15 +70,13 @@
   "explorer.git.icon.status.copied": "C",
   "explorer.file.git.showUntrackedFiles":true,
   "explorer.git.icon.rootStatus.conflicted": "=",
-  "explorer.file.showHiddenFiles": true,
   "explorer.keyMappings.global": {
     "<cr>": ["expandable?", "expand", "open"],
     "o": ["expandable?", "expand", "open"],
     "v": "open:vsplit"
   },
 
-  "snippets.ultisnips.directories": ["UltiSnips", "~/.config/nvim/my_snippets"],
-  "snippets.autoTrigger": true,
+
 
   "prettier.bracketSpacing": true,
 

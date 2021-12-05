@@ -1,13 +1,13 @@
 " INSTALL VIMPLUG IF NOT INSTALLED:   ₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪
-""" {{{
-""if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
-""  echo "Downloading junegunn/vim-plug..."
-""  silent !mkdir -p ~/.config/nvim/autoload/
-""  silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
-""  silent !mkdir -p ~/.config/nvim/pluggos/
-""  autocmd VimEnter * PlugInstall
-""endif
-""" }}} ===-0-=== END Install Vimplug If Not Installed
+" {{{
+if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+  echo "Downloading junegunn/vim-plug..."
+  silent !mkdir -p ~/.config/nvim/autoload/
+  silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
+  silent !mkdir -p ~/.config/nvim/pluggos/
+  autocmd VimEnter * PlugInstall
+endif
+" }}} ===-0-=== END Install Vimplug If Not Installed
 
 " LOADING THE PLUGINS:   ₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪
 " {{{
@@ -18,14 +18,13 @@ call plug#begin('~/.config/nvim/pluggos')
   " Have the file system follow you around so you don't search everywhere
   Plug 'airblade/vim-rooter'
 
-  "" bookmarks yanks
-
-
   " Text N Text Editing:
   "{{{
+  " I did this on 2021-11-28 because of errors hanging
+  " https://github.com/neoclide/coc.nvim/issues/1789#issuecomment-962150287
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-  "Plug 'ajh17/vimcompletesme'
+  " Plug 'ajh17/vimcompletesme'
   "Plug 'lifepillar/vim-mucomplete'
 
   Plug 'mattn/emmet-vim'", { 'for': ['php', 'html', 'css'] }
@@ -35,7 +34,7 @@ call plug#begin('~/.config/nvim/pluggos')
   " this guy is my hero of the week:
   Plug 'tomtom/tcomment_vim'
   "" multi-file find and replace.
-  Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+  " Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 
   Plug 'SirVer/ultisnips' "| Plug 'honza/vim-snippets'  https://github.com/bonsaiben/bootstrap-snippets
 
@@ -47,11 +46,16 @@ call plug#begin('~/.config/nvim/pluggos')
     " PHP {{{
       Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php'] }
       Plug 'StanAngeloff/php.vim', { 'for': 'php' }
-      "Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
+      " Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
       " Plug 'stephpy/vim-php-cs-fixer'
       " https://github.com/shawncplus/phpcomplete.vim
       " for improved omniComplete for php??
       " Plug 'shawncplus/phpcomplete.vim', { 'for': 'php' }
+    "}}}
+
+    " LUA {{{
+      " Plug 'raymond-w-ko/vim-lua-indent'
+
     "}}}
 
   "}}}
@@ -63,22 +67,33 @@ call plug#begin('~/.config/nvim/pluggos')
   Plug 'machakann/vim-highlightedyank' "shows you what you just yanked - I love this
   Plug 'ap/vim-css-color' "Show colours on screen
   Plug 'easymotion/vim-easymotion'
-  Plug 'aserebryakov/vim-todo-lists'
-  Plug 'kurkale6ka/vim-swap'     " swap words around a char/operator using <leader>x
 
+  Plug 'coldfix/hexhighlight' "Show colours on screen...more, hopefully??
+
+  "Plug 'aserebryakov/vim-todo-lists' " this shit is busted??
+  "Plug 'vitalk/vim-simple-todo'
+  Plug 'irrationalistic/vim-tasks'
+
+  Plug 'kurkale6ka/vim-swap'     " swap words around a char/operator using <leader>x
 
   "Plug 'vim-scripts/colornames'
   Plug 'amadeus/vim-convert-color-to', { 'on': ['ConvertColorTo'] }
-  "Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' }
-  "Plug 'dbeniamine/cheat.sh-vim' " cheatsheet in vim
+  " Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' }
+  " Plug 'dbeniamine/cheat.sh-vim', { 'on': ['Cheat'] } " cheatsheet in vim
   "Plug 'MattesGroeger/vim-bookmarks'
+
+  Plug 'liuchengxu/vim-which-key'
+  "loading whichkey on demand...doesn't work??
+  " Plug 'liuchengxu/vim-which-key' ", { 'on': ['WhichKey', 'WhichKey!', 'WhichKeyVisual', 'WhichKeyVisual!'] }
+
+  " colorschemes
+  Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+  "Plug 'dikiaap/minimalist'
 
   "}}}
 
   " Meh
   " {{{
-  "loading whichkey manually...
-  "Plug 'liuchengxu/vim-which-key' ", { 'on': ['WhichKey', 'WhichKey!', 'WhichKeyVisual', 'WhichKeyVisual!'] }
 
   " }}}
 
@@ -87,6 +102,82 @@ call plug#end()
 
 " Plug Configs:   ₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪₪
 "{{{
+
+  " Hexhighlight:
+  nmap <Leader>hex           <Plug>ToggleHexHighlight
+
+
+  " Coc:
+  "{{{
+  let g:coc_global_extensions = [
+        \ 'coc-phpls',
+        \ 'coc-html',
+        \ 'coc-css',
+        \ 'coc-json',
+        \ 'coc-lua',
+        \ 'coc-sql',
+        \ 'coc-snippets',
+        \ 'coc-emmet',
+        \ 'coc-tsserver'
+        \ ]
+        " \ 'coc-emmet',
+        " \ 'coc-yank',
+
+  set nobackup
+  set nowritebackup
+  set updatetime=500
+  " Add `:Format` command to fold current buffer.
+  command! -nargs=0 Format :call CocAction('format')
+  " Add `:Fold` command to fold current buffer.
+  command! -nargs=? Fold :call CocAction('fold', <f-args>)
+
+  if has("patch-8.1.1564")
+    set signcolumn=number
+  else
+    set signcolumn=yes
+  endif
+
+  " Trigger snippet
+  " imap qs <Plug>(coc-snippets-expand)
+  " imap jj<Plug>(coc-snippets-expand-jump)
+  " Jump around snippets
+  let g:coc_snippet_next = 'qj'
+  let g:coc_snippet_prev = 'qk'
+
+  " Use <c-space> to trigger completion.
+  inoremap <silent><expr> <C-space> Coc#refresh()
+
+  " Jump to definition
+  nmap <Leader>cd <Plug>(coc-definition)
+
+"  https://gist.github.com/erickpatrick/bc11a2a08ce388d751af5718b839ccd1
+" {{{
+  " Formatting selected code.
+  xmap <leader>cf  <Plug>(coc-format-selected)
+  nmap <leader>cf  <Plug>(coc-format-selected)
+
+  " Applying codeAction to the selected region.
+  " Example: `<leader>caap` for current paragraph
+  xmap <leader>cca  <Plug>(coc-codeaction-selected)
+  nmap <leader>cca  <Plug>(coc-codeaction-selected)
+
+  " Remap keys for applying codeAction to the current line.
+  nmap <leader>cac  <Plug>(coc-codeaction)
+  " Apply AutoFix to problem on the current line.
+  nmap <leader>cfc  <Plug>(coc-fix-current)
+
+"}}}
+
+
+  " Show Yank List
+  nnoremap <silent> <Leader>cy  :<C-u>CocList -A --normal yank<cr>
+
+  hi! link CocErrorSign WarningMsg
+  hi! link CocWarningSign Number
+  hi! link CocInfoSign Type
+  autocmd FileType css let b:coc_additional_keywords = ["-"]
+
+  "}}}
 
   " EasyAlign:
   "{{{
@@ -119,24 +210,24 @@ call plug#end()
     omap <F1><F1> <plug>(fzf-maps-o)
     imap <F1><F1> <plug>(fzf-maps-i)
     "nmap <c-p> :cclose<CR>:FZF<CR>
-    nnoremap <leader>ag :Ag<CR>
-    nnoremap <leader>rg :Rg<CR>
-    "File Open
-    nnoremap <leader>fo :Files<CR>
-    "File Line
+    "Find Word
+    nnoremap <leader>fw :Ag<CR>
+    "Find File
+    nnoremap <leader>ff :Files<CR>
+    "Find Line
     nnoremap <leader>fl :Lines<CR>
-    "Buffer Search
-    nnoremap <leader>bl :BLines<CR>
+    "Find Buffer
+    nnoremap <leader>fb :BLines<CR>
     "Snippet Search
     nnoremap <leader>sn :Snippets<CR>
-    "Marks Search
-    nnoremap <leader>ms :Marks<CR>
+    "Find Marks
+    nnoremap <leader>fm :Marks<CR>
     "Goto Buffer
     nnoremap <leader>gb :Buffers<CR>
     "Tags Search
     nnoremap <leader>ts :Tags<CR>
-    "Help Tags
-    nnoremap <leader>ht :Helptags<CR>
+    "Find Help
+    nnoremap <leader>fh :Helptags<CR>
 
     let g:fzf_action = {
           \ 'ctrl-t': 'tab split',
@@ -213,7 +304,7 @@ call plug#end()
 
 
     "imap <expr> qw fzf#vim#complete#word({'window': { 'width': 0.2, 'height': 1, 'xoffset':100 }})
-    imap qs <Esc>:Snippets<CR>
+    " imap qs <Esc>:Snippets<CR>
 
     "imap <expr> q- fzf#vim#complete#line({'window': { 'width': 1, 'height': 0.2, 'yoffset':100 }})
 
@@ -280,12 +371,11 @@ call plug#end()
     map <Leader>a= :EasyAlign =<CR>
   "}}}
 
-
   " UltiSnips:
   "{{{
-  let g:UltiSnipsSnippetDirectories  = [$HOME.'/.config/nvim/my_snippets/']
+  let g:UltiSnipsSnippetDirectories  = [$HOME.'/.config/nvim/my_snippets/', $HOME.'/.config/nvim-4/my_snippets/']
   let g:UltiSnipsExpandTrigger       = "qx"
-  "let g:UltiSnipsListSnippets        = "qs"
+  let g:UltiSnipsListSnippets        = "qs"
 
   let g:UltiSnipsJumpForwardTrigger  = "qj"
   let g:UltiSnipsJumpBackwardTrigger = "qk"
@@ -306,10 +396,10 @@ call plug#end()
     elseif (strlen(substr)==0)
       return "\<Esc>:Snippets\<CR>"
     else
-      "return "\<Esc>:Emmet emmet-expand-abbr\<CR>"
-      "return g:user_emmet_expandabbr_key
-      "return "\<plug>(emmet-expand-abbr)"
-      "return g:user_emmet_expandabbr
+      " return "\<Esc>:Emmet emmet-expand-abbr\<CR>"
+      " return g:user_emmet_expandabbr_key
+      " return "\<plug>(emmet-expand-abbr)"
+      " return g:user_emmet_expandabbr
       return "\<Esc>:call emmet#expandAbbr(3,'')\<CR>"
     endif
   endfunction
@@ -324,58 +414,62 @@ call plug#end()
 
   " End Ultisnips }}}
 
-  " Emmet {{{
+  " Emmet:
+  " {{{
     let g:user_emmet_leader_key=','
-    "let g:user_emmet_expandabbr_key="qe"
-
+    " " let g:user_emmet_leader_key='\\'
+    " let g:user_emmet_expandabbr_key="qe"
     let g:user_emmet_next_key = 'qj'
     let g:user_emmet_prev_key = 'qk'
-
-    " enable in all modes:
-    let g:user_emmet_mode='a'
+    " " enable in all modes with 'a' or 'inv'
+    let g:user_emmet_mode='i'
 
     " user_emmet options {{{
-    "  let g:user_emmet_expandabbr_key = '<C-y>,'
-    "  let g:user_emmet_expandword_key = '<C-y>;'
-    "  let g:user_emmet_update_tag = '<C-y>u'
-    "  let g:user_emmet_balancetaginward_key = '<C-y>d'
-    "  let g:user_emmet_balancetagoutward_key = '<C-y>D'
-    "  let g:user_emmet_next_key = '<C-y>n'
-    "  let g:user_emmet_prev_key = '<C-y>N'
-    "  let g:user_emmet_imagesize_key = '<C-y>i'
-    "  let g:user_emmet_togglecomment_key = '<C-y>/'
-    "  let g:user_emmet_splitjointag_key = '<C-y>j'
-    "  let g:user_emmet_removetag_key = '<C-y>k'
-    "  let g:user_emmet_anchorizeurl_key = '<C-y>a'
-    "  let g:user_emmet_anchorizesummary_key = '<C-y>A'
-    "  let g:user_emmet_mergelines_key = '<C-y>m'
-    "  let g:user_emmet_codepretty_key = '<C-y>c'
+     " let g:user_emmet_expandabbr_key = '<C-y>,'
+     " let g:user_emmet_expandword_key = '<C-y>;'
+     " let g:user_emmet_update_tag = '<C-y>u'
+     " let g:user_emmet_balancetaginward_key = '<C-y>d'
+     " let g:user_emmet_balancetagoutward_key = '<C-y>D'
+     " let g:user_emmet_next_key = '<C-y>n'
+     " let g:user_emmet_prev_key = '<C-y>N'
+     " let g:user_emmet_imagesize_key = '<C-y>i'
+     " let g:user_emmet_togglecomment_key = '<C-y>/'
+     " let g:user_emmet_splitjointag_key = '<C-y>j'
+     " let g:user_emmet_removetag_key = '<C-y>k'
+     " let g:user_emmet_anchorizeurl_key = '<C-y>a'
+     " let g:user_emmet_anchorizesummary_key = '<C-y>A'
+     " let g:user_emmet_mergelines_key = '<C-y>m'
+     " let g:user_emmet_codepretty_key = '<C-y>c'
     " }}}
 
-    let g:user_emmet_settings = {
-          \    'html': {
-          \        'empty_element_suffix': ' />',
-          \        'indentation' : '  '
-          \    },
-          \    'php' : {
-          \        'extends' : 'html',
-          \        'filters' : 'html,c',
-          \    },
-          \    'javascript' : {
-          \        'snippets' : {
-          \            'jq' : "\\$(function() {\n\t${cursor}${child}\n});",
-          \            'jq:each' : "\\$.each(arr, function(index, item)\n\t${child}\n});",
-          \            'fn' : "(function() {\n\t${cursor}\n})();",
-          \            'tm' : "setTimeout(function() {\n\t${cursor}\n}, 100);",
-          \        },
-          \    },
-          \}
+    " this was throwing a ton of errors?
+    " let g:user_emmet_settings = {
+    "       \    'html': {
+    "       \        'extends' : 'php',
+    "       \        'empty_element_suffix': ' />',
+    "       \        'indentation' : '  '
+    "       \    },
+    "       \    'php' : {
+    "       \        'extends' : 'html',
+    "       \        'filters' : 'html,c',
+    "       \    },
+    "       \    'javascript' : {
+    "       \        'snippets' : {
+    "       \            'jq' : "\\$(function() {\n\t${cursor}${child}\n});",
+    "       \            'jq:each' : "\\$.each(arr, function(index, item)\n\t${child}\n});",
+    "       \            'fn' : "(function() {\n\t${cursor}\n})();",
+    "       \            'tm' : "setTimeout(function() {\n\t${cursor}\n}, 100);",
+    "       \        },
+    "       \    },
+    "       \}
 
     " stop using /> to close tags
     let g:emmet_html5=1
+
+
   " }}}
 
-  " mhinz/vim-grepper
+  " Vim Grepper:
   "{{{
   let g:grepper={}
   let g:grepper.tools=["rg"]
@@ -401,12 +495,34 @@ call plug#end()
        \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
   "}}}
 
-  " easymotion
+  " Easymotion:
   "{{{
   let g:EasyMotion_smartcase = 1
   " s{char}{char} to move to {char}{char}
   map  s <Plug>(easymotion-overwin-f2)
   nmap s <Plug>(easymotion-overwin-f2)
   "}}}
+
+  " VimTasks:
+  "{{{
+  " https://github.com/irrationalistic/vim-tasks
+  " h Tasks
+  " <leader>n Add a new task below the current line
+  " <leader>N Add a new task above the current line
+  " <leader>d Complete the current task(s)
+  " <leader>x Cancel the current task(s)
+  " <leader>a Update/build the archives
+  "}}}
+
+  " SimpleTodo:
+  "{{{
+  " https://github.com/vitalk/vim-simple-todo
+  " :help simple-todo-maps
+  "imap ;t <Plug>(simple-todo-new)
+  "imap ;T <Plug>(simple-todo-below)
+  "nmap <CR> <Plug>(simple-todo-mark-switch)
+  "}}}
+
+  
 
 "}}}
