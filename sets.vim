@@ -10,7 +10,7 @@ set nowrap               " don't wrap my text
 set autoindent
 set smartindent
 
-""" swaps, backups, undos
+"" swaps, backups, undos
 " {{{
 if !isdirectory($HOME . "/.config/nvim/.backup")
     call mkdir($HOME . "/.config/nvim/.backup", "p", 0700)
@@ -27,7 +27,8 @@ endif
 set backupdir=~/.config/nvim/.backup/
 set directory=~/.config/nvim/.swap/
 set undodir=~/.config/nvim/.undo/
-set undofile
+" set undofile
+
 set undolevels=1000
 set undoreload=1000
 set swapfile

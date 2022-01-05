@@ -75,13 +75,6 @@ set smartindent copyindent " indenting
 set lazyredraw            " Speed up macros
 set diffopt+=vertical     " Prefer vertical orientation when using :diffsplit
 
-" swaps, backups, undos
-set directory=~/.config/nvim/swaps/
-set backupdir=~/.config/nvim/backups/
-set undodir=~/.config/nvim/undos/
-set undofile
-set undolevels=1000
-set undoreload=1000
 " }}} END SETS
 
 " Searching Moving Around And Leaving Buffers:

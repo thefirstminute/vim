@@ -216,27 +216,27 @@ inoremap ".. ".  ."<left><left><left>
 " Vim Folds:
 inoremap ;{ <Esc>m`O{{{<Esc>jo}}}<Esc>``a
 nnoremap <Leader>f{ ddO{{{<CR>}}}<Esc>P
-vnoremap <Leader>f{ dO{{{<CR>}}}<Esc>P
+vnoremap <Leader>f{ dO{{{<CR>}}}<Esc>Pza
 
 inoremap ;1 <Esc>m`O<!-- {{{ --><Esc>jo<!-- }}} --><Esc>``a
 nnoremap <Leader>f1 ddO<!-- {{{ --><CR><!-- }}} --><Esc>P
-vnoremap <Leader>f1 dO<!-- {{{ --><CR><!-- }}} --><Esc>P
+vnoremap <Leader>f1 dO<!-- {{{ --><CR><!-- }}} --><Esc>Pza
 
 inoremap ;' <Esc>m`O" {{{ "<Esc>jo" }}} "<Esc>``a
 nnoremap <Leader>f' ddO" {{{ "<CR>" }}} "<Esc>P
-vnoremap <Leader>f' dO" {{{ "<CR>" }}} "<Esc>P
+vnoremap <Leader>f' dO" {{{ "<CR>" }}} "<Esc>Pza
 
 inoremap ;8 <Esc>m`O/* {{{ */<Esc>jo/* }}} */<Esc>``a
 nnoremap <Leader>f8 ddO/* {{{ */<CR>/* }}} */<Esc>P
-vnoremap <Leader>f8 dO/* {{{ */<CR><CR>/* }}} */<Esc>kP
+vnoremap <Leader>f8 dO/* {{{ */<CR>/* }}} */<Esc>Pza
 
 inoremap ;3 <Esc>m`O## {{{<Esc>jo## }}}<Esc>``a
 nnoremap <Leader>f3 ddO## {{{<CR>## }}}<Esc>P
-vnoremap <Leader>f3 dO## {{{<CR><CR>## }}}<Esc>kP
+vnoremap <Leader>f3 dO## {{{<CR>## }}}<Esc>Pza
 
 inoremap ;- <Esc>m`O-- {{{<Esc>jo-- }}}<Esc>``a
 nnoremap <Leader>f- ddO-- {{{<CR>-- }}}<Esc>P
-vnoremap <Leader>f- dO-- {{{<CR><CR>-- }}}<Esc>kP
+vnoremap <Leader>f- dO-- {{{<CR>-- }}}<Esc>Pza
 
 " Comments:
 inoremap ##* /* <C-o>A */

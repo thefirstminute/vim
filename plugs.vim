@@ -65,10 +65,13 @@ call plug#begin('~/.config/nvim/pluggos')
   "{{{
   Plug 'andymass/vim-matchup', { 'for': ['php', 'html'] }  " shows matching tags in html
   Plug 'machakann/vim-highlightedyank' "shows you what you just yanked - I love this
-  Plug 'ap/vim-css-color' "Show colours on screen
   Plug 'easymotion/vim-easymotion'
 
-  Plug 'coldfix/hexhighlight' "Show colours on screen...more, hopefully??
+  " Show colours on screen...
+  " Plug 'coldfix/hexhighlight'
+  " Plug 'ap/vim-css-color'
+  Plug 'chrisbra/colorizer'
+
 
   "Plug 'aserebryakov/vim-todo-lists' " this shit is busted??
   "Plug 'vitalk/vim-simple-todo'
@@ -78,7 +81,7 @@ call plug#begin('~/.config/nvim/pluggos')
 
   "Plug 'vim-scripts/colornames'
   Plug 'amadeus/vim-convert-color-to', { 'on': ['ConvertColorTo'] }
-  " Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' }
+  Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' }
   " Plug 'dbeniamine/cheat.sh-vim', { 'on': ['Cheat'] } " cheatsheet in vim
   "Plug 'MattesGroeger/vim-bookmarks'
 
@@ -88,7 +91,11 @@ call plug#begin('~/.config/nvim/pluggos')
 
   " colorschemes
   Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-  "Plug 'dikiaap/minimalist'
+  Plug 'dikiaap/minimalist'
+  Plug 'jonathanfilip/vim-lucius'
+  Plug 'sainnhe/edge'
+  Plug 'ayu-theme/ayu-vim'
+  Plug 'andbar-ru/vim-unicon'
 
   "}}}
 

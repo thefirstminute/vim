@@ -179,6 +179,10 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 "mark position before search, go back with 's
 nnoremap / ms/
 
+"mark position before Ggg's
+nnoremap G mgG
+nnoremap gg mggg
+
 "Change Selected (on current line)
 nnoremap <Leader>cl yiw:s/<C-r>"/
 vnoremap <Leader>cl y:s/<C-r>"/

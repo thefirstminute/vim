@@ -4,31 +4,32 @@
 "autocmd BufReadPre,FileType sh,bash set background=dark
 "autocmd BufReadPre,FileType python colorscheme onedark
 "autocmd BufReadPre,FileType python set background=dark
-" colorscheme alduin
-" colorscheme ayu
-" colorscheme minimalist
-set background=dark
-
-" TokyoNight: https://github.com/folke/tokyonight.nvim
-let g:tokyonight_style = "night"
-let g:tokyonight_italic_functions = 1
-let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
-" Custom Colors:
-let g:tokyonight_colors = {
-  \ 'hint': 'orange',
-  \ 'error': '#ff0000'
-\ }
-
-" Load the colorscheme
-colorscheme tokyonight
-
-
 
 " autocmd FileType vim,snippets colorscheme angr
 " autocmd FileType vim,snippets set background=dark
-
 " autocmd FileType php,html,css colorscheme minimalist
 " autocmd FileType php,html,css set background=dark
+
+" colorscheme alduin
+" colorscheme ayu
+
+if has('nvim-0.6')
+  TokyoNight: https://github.com/folke/tokyonight.nvim
+  let g:tokyonight_style = "night"
+  let g:tokyonight_italic_functions = 1
+  let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
+  " Custom Colors:
+  let g:tokyonight_colors = {
+    \ 'hint': 'orange',
+    \ 'error': '#ff0000'
+  \ }
+  colorscheme tokyonight
+else
+  colorscheme minimalist
+endif
+
+set background=dark
+
 
 
 "highlight Pmenu       ctermfg=white     ctermbg=240    cterm=NONE

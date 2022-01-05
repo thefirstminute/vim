@@ -31,7 +31,7 @@
     "php": "html"
   },
 
-  "snippets.userSnippetsDirectory": "~/Documents/vims/my_snippets",
+  "snippets.userSnippetsDirectory": "~/.config/nvim/my_snippets",
   "snippets.ultisnips.enable":true,
   "snippets.extends": {
     "php":[ "html", "css", "javascript", "sql" ],
